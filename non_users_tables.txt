@@ -1,0 +1,107 @@
+ -----------------DEPARTMENT TABLE--------------------------//
+
+CREATE TABLE DEPARTMENT (
+    Dep_id CHAR(8) PRIMARY KEY,
+    To_id CHAR(8),
+    Dep_Name VARCHAR(30),
+    FOREIGN KEY (To_id) REFERENCES TECHNICAL_OFFICER(To_id)
+);
+
+------------------COURSE_UNIT TABLE------------------------//
+
+CREATE TABLE COURSE_UNIT (
+    Course_id CHAR(8) PRIMARY KEY,
+    Dep_id CHAR(8),
+    End_mark VARCHAR(8),
+    Practical VARCHAR(10),
+    Theory VARCHAR(10),
+    Credit INT(3),
+    Co_Name VARCHAR(30),
+    FOREIGN KEY (Dep_id) REFERENCES DEPARTMENT(Dep_id)
+    
+);
+    
+FOREIGN KEY (End_mark) REFERENCES END_EXAM(End_mark)
+--meka awl---------------------END_EXAM TABLE---------------------------------// 
+
+CREATE TABLE END_EXAM (
+    End_mark decimal(4,2) PRIMARY KEY,
+    CA_ID VARCHAR(8),
+    FOREIGN KEY (CA_iD) REFERENCES CA_MARKS(CA_iD)
+);
+
+
+---------------------MEDICAL TABLE------------------------------------//
+
+
+CREATE TABLE CA_MARKS (
+    CA_iD CHAR(8) PRIMARY KEY,
+    Student_iD CHAR(8),
+    Course_id CHAR(8),
+    Q1_mark decimal(4,2),
+    Q2_mark decimal(4,2),
+    Q3_mark decimal(4,2),
+    Q_total decimal(4,2),
+    Assignment_total decimal(4,2),
+    Mini_project_mark decimal(4,2),
+    CA_total decimal(4,2),
+    FOREIGN KEY (Student_ID) REFERENCES STUDENT(Student_id),
+    FOREIGN KEY (Course_id) REFERENCES COURSE_UNIT(Course_id)
+);
+
+---------------------ATENDENCE TABLE------------------------------------//
+
+
+CREATE TABLE ATTENDENCE (
+    Attendence_iD CHAR(8) PRIMARY KEY,
+    Student_iD CHAR(8),
+    To_iD CHAR(8),
+    Course_id CHAR(8),
+    Me_id CHAR(8),
+    Session_date DATE,
+    Status VARCHAR(15),
+    FOREIGN KEY (Student_ID) REFERENCES STUDENT(Student_id),
+    FOREIGN KEY (To_ID) REFERENCES TECHNICAL_OFFICER(To_id),
+    FOREIGN KEY (Course_id) REFERENCES COURSE_UNIT(Course_id),
+    FOREIGN KEY (Me_id) REFERENCES MEDICAL(Me_id)
+);
+
+
+---------------------MEDICAL TABLE------------------------------------//
+    CREATE table medical(
+        Me_id CHAR(8) PRIMARY KEY,
+        Student_id CHAR(8),
+        FOREIGN KEY(Student_id) REFERENCES Student(Student_id)
+    )
+
+---------------------Student_End_Exam TABLE------------------------------------//
+
+CREATE TABLE Student_result(
+    Student_id CHAR(8),
+    End_mark decimal(4,2),
+    CA_iD char(8),
+    foreign KEY(CA_iD)REFERENCES ca_marks(CA_iD),
+    FOREIGN key (End_mark) REFERENCES end_exam(End_mark)
+
+
+);
+
+
+---------------------Student_Course TABLE------------------------------------//
+
+CREATE TABLE Student_course(
+    Student_id CHAR(8),
+    Course_id CHAR(8),
+    FOREIGN KEY(Student_id) REFERENCES student(Student_id),
+    FOREIGN key (Course_id) REFERENCES course_unit(Course_id)
+);
+
+
+---------------------lecture_Course TABLE------------------------------------//
+
+CREATE TABLE lecture_course(
+    lec_id CHAR(8),
+    course_id CHAR(8),
+    FOREIGN KEY (lec_id) REFERENCES lecture(Lec_id),
+    FOREIGN key (course_id) REFERENCES course_unit(Course_id)
+);
