@@ -7,6 +7,8 @@ CREATE TABLE DEPARTMENT (
     FOREIGN KEY (To_id) REFERENCES TECHNICAL_OFFICER(To_id)
 );
 
+ SET FOREIGN_KEY_CHECKS = 0;
+
 ------------------COURSE_UNIT TABLE------------------------//
 
 CREATE TABLE COURSE_UNIT (
@@ -27,6 +29,8 @@ FOREIGN KEY (End_mark) REFERENCES END_EXAM(End_mark)
 CREATE TABLE END_EXAM (
     End_mark decimal(4,2) PRIMARY KEY,
     CA_ID VARCHAR(8),
+    Student_id char(8),
+     FOREIGN KEY (Student_id) REFERENCES student(Student_iD)
     FOREIGN KEY (CA_iD) REFERENCES CA_MARKS(CA_iD)
 );
 
