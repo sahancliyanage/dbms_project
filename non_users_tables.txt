@@ -27,11 +27,12 @@ FOREIGN KEY (End_mark) REFERENCES END_EXAM(End_mark)
 --meka awl---------------------END_EXAM TABLE---------------------------------// 
 
 CREATE TABLE END_EXAM (
-    End_mark decimal(4,2) PRIMARY KEY,
+    End_mark decimal(4,2),
     CA_ID VARCHAR(8),
     Student_id char(8),
-     FOREIGN KEY (Student_id) REFERENCES student(Student_iD)
-    FOREIGN KEY (CA_iD) REFERENCES CA_MARKS(CA_iD)
+     FOREIGN KEY (Student_id) REFERENCES student(Student_iD),
+    FOREIGN KEY (CA_iD) REFERENCES CA_MARKS(CA_iD),
+    PRIMARY KEY(Student_id,)
 );
 
 
