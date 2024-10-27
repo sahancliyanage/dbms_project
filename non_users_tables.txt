@@ -64,15 +64,15 @@ INSERT INTO lecture (Lec_id, Dep_id, Lec_Name, Lec_Email, Lec_Phone, Lec_Passwor
 CREATE table department(
     Dep_id CHAR(8)PRIMARY key,
     Dep_name VARCHAR(30),
-    Dep_To_id CHAR(8),
-    FOREIGN key (Dep_To_id) REFERENCES technical_officer(To_id) on update cascade
+    Dep_To_id CHAR(4),
+    FOREIGN key (Dep_To_id) REFERENCES tec_officer(Tech_id) on update cascade
 );
 
 INSERT INTO department(Dep_id,Dep_name,Dep_To_id) VALUES
-("Dep01","ICT","To01"),
-("Dep02","ET","To02"),
-("Dep03","BST","To03"),
-("Dep04","Multidiciplinary","To04");
+("Dep01","ICT","T01"),
+("Dep02","ET","T02"),
+("Dep03","BST","T03"),
+("Dep04","Multidiciplinary","T04");
 
 -----------------------------------------------------------------------------------------------
 
