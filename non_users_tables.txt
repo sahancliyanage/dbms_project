@@ -276,3 +276,6 @@ INSERT INTO course VALUES
 ('BST1272','Dep03','m','Introduction to Fisheries Biology',2.00,'CGPA',2,2,7.50),
 ('BST1622','Dep03','t','Basic Microbiology',2.00,'CGPA',3,0,15.00),
 ('BST1282','Dep03','p','Fundamentals in Agriculture',2.00,'CGPA',0,2,15.00);
+
+----------------------------------------------------------------------------
+
