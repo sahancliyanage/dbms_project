@@ -147,7 +147,13 @@ DELIMITER //
 CREATE PROCEDURE update_ca_total()
 BEGIN
     UPDATE ca_marks
-    SET CA_total = Q_total + (COALESCE(Assignment_Mini_project_mark, 0) / 10) + COALESCE(Mid_exam_mark_t, 0)+ (COALESCE(Mid_exam_mark_p, 0)/10);
+    SET CA_total = Q_total + (COALESCE(Assignment_Mini_project_mark, 0) / 10) +
+                   CASE 
+                       WHEN Mid_exam_mark_t IS NOT NULL AND Mid_exam_mark_p IS NOT NULL THEN (COALESCE(Mid_exam_mark_t, 0) + COALESCE(Mid_exam_mark_p, 0)) / 10
+                       WHEN Mid_exam_mark_t IS NOT NULL THEN COALESCE(Mid_exam_mark_t, 0) / 5
+                       WHEN Mid_exam_mark_p IS NOT NULL THEN COALESCE(Mid_exam_mark_p, 0) / 5
+                       ELSE 0
+                   END;
 END//
 DELIMITER ;
 
