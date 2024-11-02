@@ -16,7 +16,7 @@ END //
 DELIMITER ;
 
 
-CALL update_q1_marks("TG1303","ICT002",73.20);
+CALL update_q1_marks("TG1102","ICT1212",73.20);
 
 drop procedure update_q1_marks;
 /////////////////////////////////////////////////
@@ -36,7 +36,7 @@ END //
 DELIMITER ;
 
 
-CALL update_q2_marks("TG1303","ICT002",80.20);
+CALL update_q2_marks("TG1102","ICT1212",73.20);
 
 drop procedure update_q2_marks;
 
@@ -52,16 +52,16 @@ CREATE PROCEDURE update_q3_marks(
 )
 BEGIN
     UPDATE ca_marks
-    SET Q2_mark = mark
+    SET Q3_mark = mark
     WHERE BINARY student_id = BINARY st_id AND BINARY ca_co_id = BINARY co_id;
 END //
 
 DELIMITER ;
 
 
-CALL update_q2_marks("TG1303","ICT002",80.20);
+CALL update_q3_marks("TG1102","ICT1212",73.20);
 
-drop procedure update_q2_marks;
+drop procedure update_q3_marks;
 //////////////////////////////////////////////////////////////////
 DELIMITER //
 
@@ -79,7 +79,7 @@ END //
 DELIMITER ;
 
 
-CALL update_assigment_marks("TG1303","ICT002",80.20);
+CALL update_assigment_marks("TG1102","ICT1212",63.20);
 
 drop procedure update_assigment_marks;
 ////////////////////////////////////////////
@@ -90,18 +90,19 @@ DELIMITER //
 CREATE PROCEDURE update_midexam_marks(
     IN st_id CHAR(8),
     IN co_id CHAR(8),
-    IN mark DECIMAL(4, 2)
+    IN mark1 DECIMAL(5, 2),
+    IN mark2 DECIMAL(5, 2)
 )
 BEGIN
     UPDATE ca_marks
-    SET Mid_exam_mark = mark
+    SET Mid_exam_mark_t = mark1,Mid_exam_mark_p = mark2
     WHERE BINARY student_id = BINARY st_id AND BINARY ca_co_id = BINARY co_id;
 END //
 
 DELIMITER ;
 
 
-CALL update_midexam_marks("TG1301","ICT001",80.20);
+CALL update_midexam_marks("TG1102","ICT1212",50.00,20.00);
 
 drop procedure update_midexam_marks;
 
@@ -146,7 +147,7 @@ DELIMITER //
 CREATE PROCEDURE update_ca_total()
 BEGIN
     UPDATE ca_marks
-    SET CA_total = Q_total + (COALESCE(Assignment_Mini_project_mark, 0) / 10) + (COALESCE(Mid_exam_mark, 0) / 5);
+    SET CA_total = Q_total + (COALESCE(Assignment_Mini_project_mark, 0) / 10) + COALESCE(Mid_exam_mark_t, 0)+ (COALESCE(Mid_exam_mark_p, 0)/10);
 END//
 DELIMITER ;
 
@@ -166,7 +167,7 @@ DELIMITER ;
 
 
 drop procedure view_ca_batch;
-CALL  view_ca_batch()
+CALL  view_ca_batch("ENT1353")
 ////////////////////////////////////
 DELIMITER //
 CREATE PROCEDURE view_ca_student(IN stu_id CHAR(8),IN course_id CHAR(8))
@@ -218,3 +219,4 @@ select * from ca_percentage;
 
           
 //////////////////////////////////////
+
