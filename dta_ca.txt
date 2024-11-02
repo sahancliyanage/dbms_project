@@ -1030,3 +1030,28 @@ SET
 WHERE 
     `Student_id` = 'TG1313' 
     AND `Ca_co_id` = 'TMS1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '30', 
+    `Q2_mark` = '0.00', 
+    `Q3_mark` = '21', 
+    `Assignment_Mini_project_mark` = '82', 
+    `Mid_exam_mark_t` = '25'
+   
+WHERE 
+    `Student_id` = 'TG1101' 
+    AND `Ca_co_id` = 'ENT1353';
+
+
+
+////////////////////////////////////
+
+
+UPDATE `ca_marks` 
+SET 
+    `Mid_exam_mark_p` = null 
+
+  
+WHERE 
+    `Ca_co_id` = 'BST1622' or `Ca_co_id` = 'ENG1212' or `Ca_co_id` = 'ENT1353' or `Ca_co_id` = 'ICT1212' or `Ca_co_id` = 'ICT1242' or `Ca_co_id` = 'TCS1212' or `Ca_co_id` = 'TMS1213' or `Ca_co_id` = 'TMS1233';
