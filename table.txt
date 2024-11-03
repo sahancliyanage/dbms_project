@@ -29,3 +29,18 @@ INSERT INTO admin VALUES
 ('AD02','P.Chinthaka Silva','c.chinthaka.silva@email.com','Ruhuna@786',0750303436),
 ('AD03','M.M.Ruwantha Senanayake','ruwantha.senanayake@email.com','TechUOR*196',0720803796),
 ('AD04','K.D.Amali Rathnayake','amali.rathnayake@email.com','A^miL@123',0725303436);
+
+//////////////////////////////////////////
+CREATE TABLE medical(
+	Medi_id CHAR(8) PRIMARY KEY NOT NULL,
+	Medi_Stu_id CHAR(8),
+	Reason VARCHAR(100),
+	Submit_date DATE,
+	FOREIGN KEY(Medi_stu_id) REFERENCES student(Student_id) ON UPDATE CASCADE
+);
+
+
+INSERT INTO medical VALUES
+('ME001','TG1302','','2024-07-18'),
+('ME002','TG1304','','2024-09-9'),
+('ME003','TG1307','','2024-10-22');
