@@ -1,0 +1,1057 @@
+m
+BST1272
+ICT1233
+ICT1253
+TMS1223
+
+p
+BST1282
+ICT1222
+
+t
+BST1622
+ENG1212
+ENT1353
+ICT1212
+ICT1242
+TCS1212
+TMS1213
+TMS1233
+UPDATE `ca_marks` 
+SET 
+    `Mid_exam_mark_t` = null
+WHERE 
+    `Ca_co_id` = 'ICT1222'
+/////////
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '30', 
+    `Q2_mark` = '80', 
+    `Q3_mark` = '20', 
+    `Assignment_Mini_project_mark` = '50', 
+    `Mid_exam_mark_t` = '60', 
+    `Mid_exam_mark_p` = '35' 
+WHERE 
+    `Student_id` = 'TG1103' 
+    AND `Ca_co_id` = 'BST1272';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '40', 
+    `Q2_mark` = '20', 
+    `Q3_mark` = '20', 
+    `Assignment_Mini_project_mark` = '40' 
+WHERE 
+    `Student_id` = 'TG1102' 
+    AND `Ca_co_id` = 'ICT1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Mid_exam_mark_t` = '50' 
+WHERE 
+    `Student_id` = 'TG1101' 
+    AND `Ca_co_id` = 'ENT1353';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '60', 
+    `Q2_mark` = '20', 
+    `Q3_mark` = '10', 
+    `Assignment_Mini_project_mark` = '45', 
+    `Mid_exam_mark_p` = '65' 
+WHERE 
+    `Student_id` = 'TG1102' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '35', 
+    `Q2_mark` = '45', 
+    `Q3_mark` = '25', 
+    `Assignment_Mini_project_mark` = '50', 
+    `Mid_exam_mark_t` = '55.10' 
+WHERE 
+    `Student_id` = 'TG1104' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '30', 
+    `Q2_mark` = '50', 
+    `Q3_mark` = '60', 
+    `Assignment_Mini_project_mark` = '45', 
+    `Mid_exam_mark_t` = '65' 
+WHERE 
+    `Student_id` = 'TG1105' 
+    AND `Ca_co_id` = 'ICT1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '65', 
+    `Q2_mark` = '45', 
+    `Q3_mark` = '0', 
+    `Assignment_Mini_project_mark` = '74', 
+    `Mid_exam_mark_p` = '70' 
+WHERE 
+    `Student_id` = 'TG1105' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '45', 
+    `Q2_mark` = '78', 
+    `Q3_mark` = '52', 
+    `Assignment_Mini_project_mark` = '67', 
+    `Mid_exam_mark_t` = '74', 
+    `Mid_exam_mark_p` = '63' 
+WHERE 
+    `Student_id` = 'TG1301' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '58', 
+    `Q2_mark` = '90', 
+    `Q3_mark` = '47', 
+    `Assignment_Mini_project_mark` = '55', 
+    `Mid_exam_mark_t` = '60', 
+    `Mid_exam_mark_p` = '78' 
+WHERE 
+    `Student_id` = 'TG1301' 
+    AND `Ca_co_id` = 'ICT1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '77', 
+    `Q2_mark` = '68', 
+    `Q3_mark` = '49', 
+    `Assignment_Mini_project_mark` = '82', 
+    `Mid_exam_mark_t` = '91', 
+    `Mid_exam_mark_p` = '79' 
+WHERE 
+    `Student_id` = 'TG1301' 
+    AND `Ca_co_id` = 'ICT1242';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '85', 
+    `Q2_mark` = '64', 
+    `Q3_mark` = '71', 
+    `Assignment_Mini_project_mark` = '78', 
+    `Mid_exam_mark_t` = '88', 
+    `Mid_exam_mark_p` = '65' 
+WHERE 
+    `Student_id` = 'TG1301' 
+    AND `Ca_co_id` = 'ICT1253';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '54', 
+    `Q2_mark` = '76', 
+    `Q3_mark` = '85', 
+    `Assignment_Mini_project_mark` = '91', 
+    `Mid_exam_mark_t` = '66', 
+    `Mid_exam_mark_p` = '55' 
+WHERE 
+    `Student_id` = 'TG1301' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '47', 
+    `Q2_mark` = '89', 
+    `Q3_mark` = '62', 
+    `Assignment_Mini_project_mark` = '73', 
+    `Mid_exam_mark_t` = '79', 
+    `Mid_exam_mark_p` = '82' 
+WHERE 
+    `Student_id` = 'TG1302' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '66', 
+    `Q2_mark` = '58', 
+    `Q3_mark` = '75', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '59', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1302' 
+    AND `Ca_co_id` = 'ENT1353';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '51', 
+    `Q2_mark` = '72', 
+    `Q3_mark` = '39', 
+    `Assignment_Mini_project_mark` = '87', 
+    `Mid_exam_mark_t` = '69', 
+    `Mid_exam_mark_p` = '74' 
+WHERE 
+    `Student_id` = 'TG1302' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '74', 
+    `Q2_mark` = '63', 
+    `Q3_mark` = '81', 
+    `Assignment_Mini_project_mark` = '50', 
+    `Mid_exam_mark_t` = '71', 
+    `Mid_exam_mark_p` = '66' 
+WHERE 
+    `Student_id` = 'TG1302' 
+    AND `Ca_co_id` = 'TMS1213';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '92', 
+    `Q2_mark` = '67', 
+    `Q3_mark` = '73', 
+    `Assignment_Mini_project_mark` = '83', 
+    `Mid_exam_mark_t` = '56', 
+    `Mid_exam_mark_p` = '80' 
+WHERE 
+    `Student_id` = 'TG1302' 
+    AND `Ca_co_id` = 'TMS1223';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '39', 
+    `Q2_mark` = '57', 
+    `Q3_mark` = '64', 
+    `Assignment_Mini_project_mark` = '49', 
+    `Mid_exam_mark_t` = '65', 
+    `Mid_exam_mark_p` = '85' 
+WHERE 
+    `Student_id` = 'TG1303' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '62', 
+    `Q2_mark` = '77', 
+    `Q3_mark` = '88', 
+    `Assignment_Mini_project_mark` = '58', 
+    `Mid_exam_mark_t` = '79', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1303' 
+    AND `Ca_co_id` = 'ICT1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '59', 
+    `Q2_mark` = '46', 
+    `Q3_mark` = '72', 
+    `Assignment_Mini_project_mark` = '63', 
+    `Mid_exam_mark_t` = '81', 
+    `Mid_exam_mark_p` = '55' 
+WHERE 
+    `Student_id` = 'TG1303' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '78', 
+    `Q2_mark` = '84', 
+    `Q3_mark` = '60', 
+    `Assignment_Mini_project_mark` = '72', 
+    `Mid_exam_mark_t` = '68', 
+    `Mid_exam_mark_p` = '73' 
+WHERE 
+    `Student_id` = 'TG1303' 
+    AND `Ca_co_id` = 'ICT1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '81', 
+    `Q2_mark` = '58', 
+    `Q3_mark` = '77', 
+    `Assignment_Mini_project_mark` = '59', 
+    `Mid_exam_mark_t` = '93', 
+    `Mid_exam_mark_p` = '62' 
+WHERE 
+    `Student_id` = 'TG1303' 
+    AND `Ca_co_id` = 'ICT1242';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '85', 
+    `Q2_mark` = '72', 
+    `Q3_mark` = '64', 
+    `Assignment_Mini_project_mark` = '77', 
+    `Mid_exam_mark_t` = '90', 
+    `Mid_exam_mark_p` = '88' 
+WHERE 
+    `Student_id` = 'TG1303' 
+    AND `Ca_co_id` = 'ICT1253';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '63', 
+    `Q2_mark` = '58', 
+    `Q3_mark` = '74', 
+    `Assignment_Mini_project_mark` = '81', 
+    `Mid_exam_mark_t` = '88', 
+    `Mid_exam_mark_p` = '75' 
+WHERE 
+    `Student_id` = 'TG1303' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '47', 
+    `Q2_mark` = '66', 
+    `Q3_mark` = '68', 
+    `Assignment_Mini_project_mark` = '52', 
+    `Mid_exam_mark_t` = '70', 
+    `Mid_exam_mark_p` = '80' 
+WHERE 
+    `Student_id` = 'TG1304' 
+    AND `Ca_co_id` = 'BST1272';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '54', 
+    `Q2_mark` = '62', 
+    `Q3_mark` = '79', 
+    `Assignment_Mini_project_mark` = '89', 
+    `Mid_exam_mark_t` = '85', 
+    `Mid_exam_mark_p` = '64' 
+WHERE 
+    `Student_id` = 'TG1304' 
+    AND `Ca_co_id` = 'BST1282';
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '78', 
+    `Q2_mark` = '84', 
+    `Q3_mark` = '66', 
+    `Assignment_Mini_project_mark` = '91', 
+    `Mid_exam_mark_t` = '74', 
+    `Mid_exam_mark_p` = '89' 
+WHERE 
+    `Student_id` = 'TG1304' 
+    AND `Ca_co_id` = 'BST1622';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '59', 
+    `Q2_mark` = '77', 
+    `Q3_mark` = '82', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '92', 
+    `Mid_exam_mark_p` = '73' 
+WHERE 
+    `Student_id` = 'TG1304' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '81', 
+    `Q2_mark` = '69', 
+    `Q3_mark` = '74', 
+    `Assignment_Mini_project_mark` = '62', 
+    `Mid_exam_mark_t` = '85', 
+    `Mid_exam_mark_p` = '76' 
+WHERE 
+    `Student_id` = 'TG1304' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '64', 
+    `Q2_mark` = '89', 
+    `Q3_mark` = '71', 
+    `Assignment_Mini_project_mark` = '78', 
+    `Mid_exam_mark_t` = '80', 
+    `Mid_exam_mark_p` = '88' 
+WHERE 
+    `Student_id` = 'TG1305' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '76', 
+    `Q2_mark` = '83', 
+    `Q3_mark` = '65', 
+    `Assignment_Mini_project_mark` = '79', 
+    `Mid_exam_mark_t` = '92', 
+    `Mid_exam_mark_p` = '88' 
+WHERE 
+    `Student_id` = 'TG1305' 
+    AND `Ca_co_id` = 'ENT1353';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '58', 
+    `Q2_mark` = '74', 
+    `Q3_mark` = '82', 
+    `Assignment_Mini_project_mark` = '91', 
+    `Mid_exam_mark_t` = '87', 
+    `Mid_exam_mark_p` = '79' 
+WHERE 
+    `Student_id` = 'TG1305' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '69', 
+    `Q2_mark` = '85', 
+    `Q3_mark` = '78', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '76', 
+    `Mid_exam_mark_p` = '84' 
+WHERE 
+    `Student_id` = 'TG1305' 
+    AND `Ca_co_id` = 'TMS1213';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '71', 
+    `Q2_mark` = '67', 
+    `Q3_mark` = '93', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '82', 
+    `Mid_exam_mark_p` = '77' 
+WHERE 
+    `Student_id` = 'TG1305' 
+    AND `Ca_co_id` = 'TMS1223';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '83', 
+    `Q2_mark` = '91', 
+    `Q3_mark` = '74', 
+    `Assignment_Mini_project_mark` = '86', 
+    `Mid_exam_mark_t` = '79', 
+    `Mid_exam_mark_p` = '88' 
+WHERE 
+    `Student_id` = 'TG1305' 
+    AND `Ca_co_id` = 'TMS1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '77', 
+    `Q2_mark` = '85', 
+    `Q3_mark` = '68', 
+    `Assignment_Mini_project_mark` = '92', 
+    `Mid_exam_mark_t` = '88', 
+    `Mid_exam_mark_p` = '81' 
+WHERE 
+    `Student_id` = 'TG1306' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '65', 
+    `Q2_mark` = '79', 
+    `Q3_mark` = '87', 
+    `Assignment_Mini_project_mark` = '73', 
+    `Mid_exam_mark_t` = '84', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1306' 
+    AND `Ca_co_id` = 'ICT1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '72', 
+    `Q2_mark` = '88', 
+    `Q3_mark` = '64', 
+    `Assignment_Mini_project_mark` = '81', 
+    `Mid_exam_mark_t` = '93', 
+    `Mid_exam_mark_p` = '78' 
+WHERE 
+    `Student_id` = 'TG1306' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '80', 
+    `Q2_mark` = '75', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '92', 
+    `Mid_exam_mark_p` = '84' 
+WHERE 
+    `Student_id` = 'TG1306' 
+    AND `Ca_co_id` = 'ICT1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '78', 
+    `Q2_mark` = '82', 
+    `Q3_mark` = '86', 
+    `Assignment_Mini_project_mark` = '91', 
+    `Mid_exam_mark_t` = '85', 
+    `Mid_exam_mark_p` = '89' 
+WHERE 
+    `Student_id` = 'TG1306' 
+    AND `Ca_co_id` = 'ICT1242';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '74', 
+    `Q2_mark` = '89', 
+    `Q3_mark` = '68', 
+    `Assignment_Mini_project_mark` = '77', 
+    `Mid_exam_mark_t` = '90', 
+    `Mid_exam_mark_p` = '83' 
+WHERE 
+    `Student_id` = 'TG1306' 
+    AND `Ca_co_id` = 'ICT1253';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '85', 
+    `Q2_mark` = '80', 
+    `Q3_mark` = '72', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '78', 
+    `Mid_exam_mark_p` = '86' 
+WHERE 
+    `Student_id` = 'TG1306' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '88', 
+    `Q2_mark` = '72', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '85', 
+    `Mid_exam_mark_t` = '91', 
+    `Mid_exam_mark_p` = '80' 
+WHERE 
+    `Student_id` = 'TG1307' 
+    AND `Ca_co_id` = 'BST1272';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '75', 
+    `Q2_mark` = '80', 
+    `Q3_mark` = '85', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '76', 
+    `Mid_exam_mark_p` = '82' 
+WHERE 
+    `Student_id` = 'TG1307' 
+    AND `Ca_co_id` = 'BST1282';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '90', 
+    `Q2_mark` = '78', 
+    `Q3_mark` = '83', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '81', 
+    `Mid_exam_mark_p` = '89' 
+WHERE 
+    `Student_id` = 'TG1307' 
+    AND `Ca_co_id` = 'BST1622';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '70', 
+    `Q2_mark` = '88', 
+    `Q3_mark` = '92', 
+    `Assignment_Mini_project_mark` = '84', 
+    `Mid_exam_mark_t` = '77', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1307' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '82', 
+    `Q2_mark` = '76', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '85', 
+    `Mid_exam_mark_p` = '92' 
+WHERE 
+    `Student_id` = 'TG1307' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '75', 
+    `Q2_mark` = '88', 
+    `Q3_mark` = '83', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '79', 
+    `Mid_exam_mark_p` = '87' 
+WHERE 
+    `Student_id` = 'TG1308' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '69', 
+    `Q2_mark` = '84', 
+    `Q3_mark` = '91', 
+    `Assignment_Mini_project_mark` = '76', 
+    `Mid_exam_mark_t` = '88', 
+    `Mid_exam_mark_p` = '82' 
+WHERE 
+    `Student_id` = 'TG1308' 
+    AND `Ca_co_id` = 'ENT1353';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '80', 
+    `Q2_mark` = '72', 
+    `Q3_mark` = '78', 
+    `Assignment_Mini_project_mark` = '89', 
+    `Mid_exam_mark_t` = '90', 
+    `Mid_exam_mark_p` = '84' 
+WHERE 
+    `Student_id` = 'TG1308' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '82', 
+    `Q2_mark` = '76', 
+    `Q3_mark` = '91', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '85', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1308' 
+    AND `Ca_co_id` = 'TMS1213';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '78', 
+    `Q2_mark` = '83', 
+    `Q3_mark` = '89', 
+    `Assignment_Mini_project_mark` = '92', 
+    `Mid_exam_mark_t` = '81', 
+    `Mid_exam_mark_p` = '87' 
+WHERE 
+    `Student_id` = 'TG1308' 
+    AND `Ca_co_id` = 'TMS1223';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '75', 
+    `Q2_mark` = '79', 
+    `Q3_mark` = '88', 
+    `Assignment_Mini_project_mark` = '85', 
+    `Mid_exam_mark_t` = '84', 
+    `Mid_exam_mark_p` = '91' 
+WHERE 
+    `Student_id` = 'TG1308' 
+    AND `Ca_co_id` = 'TMS1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '88', 
+    `Q2_mark` = '81', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '86', 
+    `Mid_exam_mark_t` = '92', 
+    `Mid_exam_mark_p` = '89' 
+WHERE 
+    `Student_id` = 'TG1309' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '84', 
+    `Q2_mark` = '78', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '92', 
+    `Mid_exam_mark_p` = '85' 
+WHERE 
+    `Student_id` = 'TG1309' 
+    AND `Ca_co_id` = 'ICT1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '79', 
+    `Q2_mark` = '81', 
+    `Q3_mark` = '85', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '83', 
+    `Mid_exam_mark_p` = '88' 
+WHERE 
+    `Student_id` = 'TG1309' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '72', 
+    `Q2_mark` = '80', 
+    `Q3_mark` = '86', 
+    `Assignment_Mini_project_mark` = '75', 
+    `Mid_exam_mark_t` = '88', 
+    `Mid_exam_mark_p` = '84' 
+WHERE 
+    `Student_id` = 'TG1309' 
+    AND `Ca_co_id` = 'ICT1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '85', 
+    `Q2_mark` = '77', 
+    `Q3_mark` = '80', 
+    `Assignment_Mini_project_mark` = '82', 
+    `Mid_exam_mark_t` = '91', 
+    `Mid_exam_mark_p` = '89' 
+WHERE 
+    `Student_id` = 'TG1309' 
+    AND `Ca_co_id` = 'ICT1242';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '90', 
+    `Q2_mark` = '85', 
+    `Q3_mark` = '88', 
+    `Assignment_Mini_project_mark` = '91', 
+    `Mid_exam_mark_t` = '82', 
+    `Mid_exam_mark_p` = '89' 
+WHERE 
+    `Student_id` = 'TG1309' 
+    AND `Ca_co_id` = 'ICT1253';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '78', 
+    `Q2_mark` = '82', 
+    `Q3_mark` = '86', 
+    `Assignment_Mini_project_mark` = '84', 
+    `Mid_exam_mark_t` = '90', 
+    `Mid_exam_mark_p` = '85' 
+WHERE 
+    `Student_id` = 'TG1309' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '85', 
+    `Q2_mark` = '88', 
+    `Q3_mark` = '91', 
+    `Assignment_Mini_project_mark` = '87', 
+    `Mid_exam_mark_t` = '79', 
+    `Mid_exam_mark_p` = '92' 
+WHERE 
+    `Student_id` = 'TG1310' 
+    AND `Ca_co_id` = 'BST1272';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '82', 
+    `Q2_mark` = '80', 
+    `Q3_mark` = '89', 
+    `Assignment_Mini_project_mark` = '85', 
+    `Mid_exam_mark_t` = '90', 
+    `Mid_exam_mark_p` = '81' 
+WHERE 
+    `Student_id` = 'TG1310' 
+    AND `Ca_co_id` = 'BST1282';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '79', 
+    `Q2_mark` = '85', 
+    `Q3_mark` = '88', 
+    `Assignment_Mini_project_mark` = '91', 
+    `Mid_exam_mark_t` = '82', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1310' 
+    AND `Ca_co_id` = 'BST1622';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '88', 
+    `Q2_mark` = '90', 
+    `Q3_mark` = '84', 
+    `Assignment_Mini_project_mark` = '82', 
+    `Mid_exam_mark_t` = '87', 
+    `Mid_exam_mark_p` = '80' 
+WHERE 
+    `Student_id` = 'TG1310' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '85', 
+    `Q2_mark` = '78', 
+    `Q3_mark` = '92', 
+    `Assignment_Mini_project_mark` = '89', 
+    `Mid_exam_mark_t` = '84', 
+    `Mid_exam_mark_p` = '88' 
+WHERE 
+    `Student_id` = 'TG1310' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '90', 
+    `Q2_mark` = '88', 
+    `Q3_mark` = '84', 
+    `Assignment_Mini_project_mark` = '87', 
+    `Mid_exam_mark_t` = '83', 
+    `Mid_exam_mark_p` = '86' 
+WHERE 
+    `Student_id` = 'TG1311' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '76', 
+    `Q2_mark` = '81', 
+    `Q3_mark` = '89', 
+    `Assignment_Mini_project_mark` = '84', 
+    `Mid_exam_mark_t` = '91', 
+    `Mid_exam_mark_p` = '85' 
+WHERE 
+    `Student_id` = 'TG1311' 
+    AND `Ca_co_id` = 'ICT1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '81', 
+    `Q2_mark` = '76', 
+    `Q3_mark` = '85', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '83', 
+    `Mid_exam_mark_p` = '88' 
+WHERE 
+    `Student_id` = 'TG1311' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '78', 
+    `Q2_mark` = '80', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '85', 
+    `Mid_exam_mark_t` = '84', 
+    `Mid_exam_mark_p` = '87' 
+WHERE 
+    `Student_id` = 'TG1311' 
+    AND `Ca_co_id` = 'ICT1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '74', 
+    `Q2_mark` = '79', 
+    `Q3_mark` = '88', 
+    `Assignment_Mini_project_mark` = '92', 
+    `Mid_exam_mark_t` = '82', 
+    `Mid_exam_mark_p` = '81' 
+WHERE 
+    `Student_id` = 'TG1311' 
+    AND `Ca_co_id` = 'ICT1242';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '87', 
+    `Q2_mark` = '83', 
+    `Q3_mark` = '80', 
+    `Assignment_Mini_project_mark` = '85', 
+    `Mid_exam_mark_t` = '89', 
+    `Mid_exam_mark_p` = '84' 
+WHERE 
+    `Student_id` = 'TG1311' 
+    AND `Ca_co_id` = 'ICT1253';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '84', 
+    `Q2_mark` = '89', 
+    `Q3_mark` = '75', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '82', 
+    `Mid_exam_mark_p` = '87' 
+WHERE 
+    `Student_id` = 'TG1311' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '88', 
+    `Q2_mark` = '84', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '92', 
+    `Mid_exam_mark_t` = '85', 
+    `Mid_exam_mark_p` = '80' 
+WHERE 
+    `Student_id` = 'TG1312' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '76', 
+    `Q2_mark` = '80', 
+    `Q3_mark` = '82', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '89', 
+    `Mid_exam_mark_p` = '84' 
+WHERE 
+    `Student_id` = 'TG1312' 
+    AND `Ca_co_id` = 'ICT1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '91', 
+    `Q2_mark` = '87', 
+    `Q3_mark` = '86', 
+    `Assignment_Mini_project_mark` = '93', 
+    `Mid_exam_mark_t` = '82', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1312' 
+    AND `Ca_co_id` = 'ICT1222';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '85', 
+    `Q2_mark` = '88', 
+    `Q3_mark` = '79', 
+    `Assignment_Mini_project_mark` = '86', 
+    `Mid_exam_mark_t` = '84', 
+    `Mid_exam_mark_p` = '83' 
+WHERE 
+    `Student_id` = 'TG1312' 
+    AND `Ca_co_id` = 'ICT1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '87', 
+    `Q2_mark` = '90', 
+    `Q3_mark` = '85', 
+    `Assignment_Mini_project_mark` = '92', 
+    `Mid_exam_mark_t` = '89', 
+    `Mid_exam_mark_p` = '90' 
+WHERE 
+    `Student_id` = 'TG1312' 
+    AND `Ca_co_id` = 'ICT1242';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '76', 
+    `Q2_mark` = '82', 
+    `Q3_mark` = '84', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '85', 
+    `Mid_exam_mark_p` = '87' 
+WHERE 
+    `Student_id` = 'TG1312' 
+    AND `Ca_co_id` = 'ICT1253';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '82', 
+    `Q2_mark` = '81', 
+    `Q3_mark` = '88', 
+    `Assignment_Mini_project_mark` = '90', 
+    `Mid_exam_mark_t` = '79', 
+    `Mid_exam_mark_p` = '80' 
+WHERE 
+    `Student_id` = 'TG1312' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '91', 
+    `Q2_mark` = '90', 
+    `Q3_mark` = '86', 
+    `Assignment_Mini_project_mark` = '93', 
+    `Mid_exam_mark_t` = '88', 
+    `Mid_exam_mark_p` = '87' 
+WHERE 
+    `Student_id` = 'TG1313' 
+    AND `Ca_co_id` = 'ENG1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '84', 
+    `Q2_mark` = '85', 
+    `Q3_mark` = '80', 
+    `Assignment_Mini_project_mark` = '78', 
+    `Mid_exam_mark_t` = '81', 
+    `Mid_exam_mark_p` = '79' 
+WHERE 
+    `Student_id` = 'TG1313' 
+    AND `Ca_co_id` = 'ENT1353';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '80', 
+    `Q2_mark` = '85', 
+    `Q3_mark` = '90', 
+    `Assignment_Mini_project_mark` = '88', 
+    `Mid_exam_mark_t` = '83', 
+    `Mid_exam_mark_p` = '87' 
+WHERE 
+    `Student_id` = 'TG1313' 
+    AND `Ca_co_id` = 'TCS1212';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '78', 
+    `Q2_mark` = '82', 
+    `Q3_mark` = '75', 
+    `Assignment_Mini_project_mark` = '80', 
+    `Mid_exam_mark_t` = '81', 
+    `Mid_exam_mark_p` = '79' 
+WHERE 
+    `Student_id` = 'TG1313' 
+    AND `Ca_co_id` = 'TMS1213';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '90', 
+    `Q2_mark` = '88', 
+    `Q3_mark` = '92', 
+    `Assignment_Mini_project_mark` = '85', 
+    `Mid_exam_mark_t` = '89', 
+    `Mid_exam_mark_p` = '86' 
+WHERE 
+    `Student_id` = 'TG1313' 
+    AND `Ca_co_id` = 'TMS1223';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '83', 
+    `Q2_mark` = '87', 
+    `Q3_mark` = '81', 
+    `Assignment_Mini_project_mark` = '82', 
+    `Mid_exam_mark_t` = '80', 
+    `Mid_exam_mark_p` = '85' 
+WHERE 
+    `Student_id` = 'TG1313' 
+    AND `Ca_co_id` = 'TMS1233';
+
+UPDATE `ca_marks` 
+SET 
+    `Q1_mark` = '30', 
+    `Q2_mark` = '0.00', 
+    `Q3_mark` = '21', 
+    `Assignment_Mini_project_mark` = '82', 
+    `Mid_exam_mark_t` = '25'
+   
+WHERE 
+    `Student_id` = 'TG1101' 
+    AND `Ca_co_id` = 'ENT1353';
+
+
+
+////////////////////////////////////
+
+
+UPDATE `ca_marks` 
+SET 
+    `Mid_exam_mark_p` = null 
+
+  
+WHERE 
+    `Ca_co_id` = 'BST1622' or `Ca_co_id` = 'ENG1212' or `Ca_co_id` = 'ENT1353' or `Ca_co_id` = 'ICT1212' or `Ca_co_id` = 'ICT1242' or `Ca_co_id` = 'TCS1212' or `Ca_co_id` = 'TMS1213' or `Ca_co_id` = 'TMS1233';

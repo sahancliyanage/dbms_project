@@ -1,0 +1,228 @@
+call update_ca_marks();
+
+DELIMITER //
+
+CREATE PROCEDURE update_q1_marks(
+    IN st_id CHAR(8),
+    IN co_id CHAR(8),
+    IN mark DECIMAL(4, 2)
+)
+BEGIN
+    UPDATE ca_marks
+    SET Q1_mark = mark
+    WHERE  student_id =  st_id AND  ca_co_id =  co_id;
+END //
+
+DELIMITER ;
+
+
+CALL update_q1_marks("TG1102","ICT1212",73.20);
+
+drop procedure update_q1_marks;
+/////////////////////////////////////////////////
+DELIMITER //
+
+CREATE PROCEDURE update_q2_marks(
+    IN st_id CHAR(8),
+    IN co_id CHAR(8),
+    IN mark DECIMAL(4, 2)
+)
+BEGIN
+    UPDATE ca_marks
+    SET Q2_mark = mark
+    WHERE BINARY student_id = BINARY st_id AND BINARY ca_co_id = BINARY co_id;
+END //
+
+DELIMITER ;
+
+
+CALL update_q2_marks("TG1102","ICT1212",73.20);
+
+drop procedure update_q2_marks;
+
+select * from ca_marks;
+/////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////
+DELIMITER //
+
+CREATE PROCEDURE update_q3_marks(
+    IN st_id CHAR(8),
+    IN co_id CHAR(8),
+    IN mark DECIMAL(4, 2)
+)
+BEGIN
+    UPDATE ca_marks
+    SET Q3_mark = mark
+    WHERE BINARY student_id = BINARY st_id AND BINARY ca_co_id = BINARY co_id;
+END //
+
+DELIMITER ;
+
+
+CALL update_q3_marks("TG1102","ICT1212",73.20);
+
+drop procedure update_q3_marks;
+//////////////////////////////////////////////////////////////////
+DELIMITER //
+
+CREATE PROCEDURE update_assigment_marks(
+    IN st_id CHAR(8),
+    IN co_id CHAR(8),
+    IN mark DECIMAL(4, 2)
+)
+BEGIN
+    UPDATE ca_marks
+    SET  Assignment_Mini_project_mark = mark
+    WHERE BINARY student_id = BINARY st_id AND BINARY ca_co_id = BINARY co_id;
+END //
+
+DELIMITER ;
+
+
+CALL update_assigment_marks("TG1102","ICT1212",63.20);
+
+drop procedure update_assigment_marks;
+////////////////////////////////////////////
+
+///////////////////////////////////////////
+DELIMITER //
+
+CREATE PROCEDURE update_midexam_marks(
+    IN st_id CHAR(8),
+    IN co_id CHAR(8),
+    IN mark1 DECIMAL(5, 2),
+    IN mark2 DECIMAL(5, 2)
+)
+BEGIN
+    UPDATE ca_marks
+    SET Mid_exam_mark_t = mark1,Mid_exam_mark_p = mark2
+    WHERE BINARY student_id = BINARY st_id AND BINARY ca_co_id = BINARY co_id;
+END //
+
+DELIMITER ;
+
+
+CALL update_midexam_marks("TG1102","ICT1212",50.00,20.00);
+
+drop procedure update_midexam_marks;
+
+select * from ca_marks;
+/////////////////////////////////////////////////////////////
+
+DELIMITER //
+
+CREATE PROCEDURE update_q_total()
+BEGIN
+    UPDATE ca_marks
+    SET Q_total = CASE 
+                    WHEN Q1_mark = -1 AND Q2_mark = -1 AND Q3_mark = -1 
+                    THEN 0
+                    
+                    WHEN (Q1_mark = -1 AND Q2_mark = -1 AND Q3_mark != -1)
+                    THEN Q3_mark / 20
+                   
+                    WHEN (Q1_mark = -1 AND Q3_mark = -1 AND Q2_mark != -1)
+                    THEN Q2_mark / 20
+                    
+                    WHEN (Q2_mark = -1 AND Q3_mark = -1 AND Q1_mark != -1)
+                    THEN Q1_mark / 20
+
+                    WHEN Q1_mark = LEAST(Q1_mark, Q2_mark, Q3_mark) 
+                    THEN (Q2_mark + Q3_mark) / 20
+                    
+                    WHEN Q2_mark = LEAST(Q1_mark, Q2_mark, Q3_mark) 
+                    THEN (Q1_mark + Q3_mark) / 20
+                    
+                    WHEN Q3_mark = LEAST(Q1_mark, Q2_mark, Q3_mark) 
+                    THEN (Q1_mark + Q2_mark) / 20
+                  END;
+END //
+
+DELIMITER ;
+
+drop procedure update_q_total;
+CALL update_q_total();
+////////////////////////////////////////////////////////
+DELIMITER //
+CREATE PROCEDURE update_ca_total()
+BEGIN
+    UPDATE ca_marks
+    SET CA_total = Q_total + (COALESCE(Assignment_Mini_project_mark, 0) / 10) +
+                   CASE 
+                       WHEN Mid_exam_mark_t IS NOT NULL AND Mid_exam_mark_p IS NOT NULL THEN (COALESCE(Mid_exam_mark_t, 0) + COALESCE(Mid_exam_mark_p, 0)) / 10
+                       WHEN Mid_exam_mark_t IS NOT NULL THEN COALESCE(Mid_exam_mark_t, 0) / 5
+                       WHEN Mid_exam_mark_p IS NOT NULL THEN COALESCE(Mid_exam_mark_p, 0) / 5
+                       ELSE 0
+                   END;
+END//
+DELIMITER ;
+
+
+drop procedure update_ca_total;
+CALL update_ca_total();
+select * from ca_marks;
+///////////////////////////////////
+DELIMITER //
+CREATE PROCEDURE view_ca_batch(IN course_id CHAR(8))
+BEGIN 
+    SELECT student_id, CA_total 
+    FROM ca_marks
+    WHERE ca_co_id = course_id;
+END//
+DELIMITER ;
+
+
+drop procedure view_ca_batch;
+CALL  view_ca_batch("ENT1353")
+////////////////////////////////////
+DELIMITER //
+CREATE PROCEDURE view_ca_student(IN stu_id CHAR(8),IN course_id CHAR(8))
+BEGIN 
+    SELECT student_id, CA_total 
+    FROM ca_marks
+    WHERE ca_co_id = course_id and Student_id = stu_id;
+END//
+DELIMITER ;
+
+
+drop procedure view_ca_student;
+CALL  view_ca_student()
+/////////////////////////////////
+DELIMITER //
+CREATE PROCEDURE view_ca_student(IN stu_id CHAR(8),IN course_id CHAR(8))
+BEGIN 
+    SELECT student_id, CA_total 
+    FROM ca_marks
+    WHERE ca_co_id = course_id and Student_id = stu_id;
+END//
+DELIMITER ;
+
+
+drop procedure view_ca_student;
+CALL  view_ca_student()
+//////////////////////////////////
+DELIMITER //
+CREATE PROCEDURE view_ca_summary(IN stu_id CHAR(8))
+BEGIN 
+    SELECT ca_co_id, CA_total 
+    FROM ca_marks
+    WHERE Student_id = stu_id;
+END//
+DELIMITER ;
+
+
+drop procedure view_ca_summary;
+CALL  view_ca_summary()
+//////////////////////////////////////////////////////////////
+
+---------------view for show ca percentage-------------
+
+CREATE OR REPLACE VIEW ca_percentage AS
+SELECT student_id, ca_co_id AS course_id, CONCAT(ROUND(CA_total / 40 * 100, 2), '%') AS ca_percentage
+FROM ca_marks;
+
+select * from ca_percentage;
+
+          
+//////////////////////////////////////
+

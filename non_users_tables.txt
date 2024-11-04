@@ -1,0 +1,292 @@
+CREATE DATABASE d05;
+USE d05;
+
+CREATE TABLE student(
+    Student_id CHAR(8) PRIMARY KEY,
+    Stu_Name VARCHAR(30),
+    Stu_Email VARCHAR(50),
+    Stu_Phone INT,
+    Stu_Password VARCHAR(20),
+    Stu_dep_id VARCHAR(5),
+    FOREIGN key (Stu_dep_id) REFERENCES department(Dep_id) on update cascade
+);
+
+------------
+-- Insert 10 records with Student_id in the format TG13##
+INSERT INTO student (Student_id, Stu_Name, Stu_Email, Stu_Phone, Stu_Password, Stu_dep_id) VALUES
+('TG1301', 'Nuwan Perera', 'nuwan.perera@example.com', 771234567, 'pass1234', 'D01'),
+('TG1302', 'Kasun Silva', 'kasun.silva@example.com', 771234568, 'pass1234', 'D02'),
+('TG1303', 'Shantha Fernando', 'shantha.fernando@example.com', 771234569, 'pass1234', 'D01'),
+('TG1304', 'Amali de Silva', 'amali.desilva@example.com', 771234570, 'pass1234', 'D03'),
+('TG1305', 'Chathuri Weerasinghe', 'chathuri.weera@example.com', 771234571, 'pass1234', 'D02'),
+('TG1306', 'Ruwan Jayasinghe', 'ruwan.jaya@example.com', 771234572, 'pass1234', 'D01'),
+('TG1307', 'Samanthi Dias', 'samanthi.dias@example.com', 771234573, 'pass1234', 'D03'),
+('TG1308', 'Harsha Abeywickrama', 'harsha.abey@example.com', 771234574, 'pass1234', 'D02'),
+('TG1309', 'Kavinda Lakmal', 'kavinda.lakmal@example.com', 771234575, 'pass1234', 'D01'),///
+('TG1310', 'Pathum Samarasinghe', 'pathum.sam@example.com', 771234576, 'pass1234', 'D03');
+
+('TG1311', 'Vihanga Yasitha', 'yasitha@mail.com', 775862342, 'pass1234', 'D01'),
+('TG1312', 'Sahan Chamika', 'sahan@gmail.com', 771234568, 'pass1234', 'D01'),
+('TG1313', 'Heshan Dilshara', 'heshan@gmail.com', 771234568, 'pass1234', 'D02');
+
+-- Insert 5 records with Student_id in the format TG11##
+INSERT INTO student (Student_id, Stu_Name, Stu_Email, Stu_Phone, Stu_Password, Stu_dep_id) VALUES
+('TG1101', 'Dilanka Gamage', 'dilanka.g@example.com', 771234577, 'pass1234', 'D02'),
+('TG1102', 'Priyanka Silva', 'priyanka.silva@example.com', 771234578, 'pass1234', 'D01'),
+('TG1103', 'Lahiru Ranatunga', 'lahiru.rana@example.com', 771234579, 'pass1234', 'D03'),
+('TG1104', 'Ishara Senanayake', 'ishara.sena@example.com', 771234580, 'pass1234', 'D02'),
+('TG1105', 'Chamali Jayawardena', 'chamali.jay@example.com', 771234581, 'pass1234', 'D01');
+
+
+        lecture
+-------------------------------------------------------------------------------------------------------
+
+CREATE TABLE lecture(
+    Lec_id CHAR(8) PRIMARY KEY,
+    Dep_id CHAR(8),
+    Lec_Name VARCHAR(30),
+    Lec_Email VARCHAR(50),
+    Lec_Phone INT,
+    Lec_Password VARCHAR(20),
+    FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) on update cascade
+);
+
+
+-- Insert records into the lecture table
+INSERT INTO lecture (Lec_id, Dep_id, Lec_Name, Lec_Email, Lec_Phone, Lec_Password) VALUES
+('L001', 'D01', 'Chandana Wijesinghe', 'chandana.wijesinghe@example.com', 771234567, 'chandana123'),
+('L002', 'D02', 'Anura Fernando', 'anura.fernando@example.com', 772345678, 'anura123'),
+('L003', 'D03', 'Nalaka Perera', 'nalaka.perera@example.com', 773456789, 'nalaka123'),
+('L004', 'D01', 'Malith Jayasinghe', 'malith.jayasinghe@example.com', 774567890, 'malith123'),
+('L005', 'D02', 'Prasad Silva', 'prasad.silva@example.com', 775678901, 'prasad123');
+
+
+            department
+--------------------------------------------------------------------------------------------
+
+CREATE table department( 
+    Dep_id CHAR(8)PRIMARY key,
+    Dep_name VARCHAR(30),
+    Dep_To_id CHAR(8),
+    FOREIGN key (Dep_To_id) REFERENCES technical_officer(To_id) on update cascade
+);
+
+INSERT INTO department(Dep_id,Dep_name,Dep_To_id) VALUES
+("Dep01","ICT","To01"),
+("Dep02","ET","To02"),
+("Dep03","BST","To03"),
+("Dep04","Multidiciplinary","To04");
+
+-----------------------------------------------------------------------------------------------
+
+CREATE TABLE ca_marks (
+    Student_id CHAR(8),
+    Ca_co_id CHAR(8),
+    Q1_mark decimal(5,2),
+    Q2_mark decimal(5,2),
+    Q3_mark decimal(5,2),
+    Q_total decimal(5,2),
+    Assignment_Mini_project_mark decimal(5,2),
+    Mid_exam_mark_t DECIMAL(5,2),
+    Mid_exam_mark_p DECIMAL(5,2),
+    CA_total decimal(5,2),
+    PRIMARY key(Student_id,Ca_co_id),
+    FOREIGN KEY (Student_ID) REFERENCES student(Student_id) on update cascade,
+    FOREIGN KEY (Ca_co_id) REFERENCES course(Co_id)on update cascade
+);
+
+DELIMITER //
+
+CREATE PROCEDURE update_ca_marks()
+BEGIN
+    INSERT INTO ca_marks (Student_id, Ca_co_id)
+    SELECT Student_id, course_id FROM student_course
+    ON DUPLICATE KEY UPDATE Student_id = VALUES(Student_id);
+END; //
+
+DELIMITER ;
+
+UPDATE `d05`.`ca_marks` SET `Assignment_Mini_project_mark` = '50.00', `Mid_exam_mark` = '78.30' WHERE (`Student_id` = 'TG1102') and (`Ca_co_id` = 'ICT1222');
+UPDATE `d05`.`ca_marks` SET `Q1_mark` = '58.03', `Q2_mark` = '25.36', `Q3_mark` = '74.20', `Assignment_Mini_project_mark` = '52.00', `Mid_exam_mark` = '80.10' WHERE (`Student_id` = 'TG1103') and (`Ca_co_id` = 'BST1272');
+UPDATE `d05`.`ca_marks` SET `Q1_mark` = '92.00', `Q2_mark` = '0.00', `Q3_mark` = '65.00', `Assignment_Mini_project_mark` = '50.00', `Mid_exam_mark` = '62.00' WHERE (`Student_id` = 'TG1104') and (`Ca_co_id` = 'ENG1212');
+UPDATE `d05`.`ca_marks` SET `Q1_mark` = '64.20', `Q2_mark` = '25.32', `Q3_mark` = '40.31', `Assignment_Mini_project_mark` = '48.00', `Mid_exam_mark` = '82.50' WHERE (`Student_id` = 'TG1105') and (`Ca_co_id` = 'ICT1212');
+UPDATE `d05`.`ca_marks` SET `Q1_mark` = '-1.00', `Q2_mark` = '62.32', `Q3_mark` = '75.20', `Assignment_Mini_project_mark` = '78.30' WHERE (`Student_id` = 'TG1105') and (`Ca_co_id` = 'ICT1222');
+
+----------------------------------------------------------------------------------
+CREATE table student_course(
+    student_id char(8),
+    course_id CHAR(8),
+    re_type char(20),
+    PRIMARY key(Student_id,Course_id),
+    FOREIGN KEY (Student_ID) REFERENCES student(Student_id) on update cascade,
+    FOREIGN KEY (Course_id) REFERENCES course(Co_id)on update cascade
+
+);
+
+
+INSERT INTO student_course (student_id, course_id, re_type) VALUES
+('TG1101', 'ENT1353', 'repeat'),
+('TG1102', 'ICT1212', 'repeat'),
+('TG1102', 'ICT1222', 'repeat'),
+('TG1103', 'BST1272', 'repeat'),
+('TG1104', 'ENG1212', 'repeat'),
+('TG1105', 'ICT1212', 'repeat'),
+('TG1105', 'ICT1222', 'repeat');
+
+
+INSERT INTO student_course (student_id, course_id, re_type) VALUES
+('TG1301', 'ICT1212', 'norepeat'),
+('TG1301', 'ICT1222', 'norepeat'),
+('TG1301', 'ICT1242', 'norepeat'),
+('TG1301', 'ICT1253', 'norepeat'),
+('TG1301', 'ICT1233', 'norepeat'),
+('TG1301', 'ENG1212', 'norepeat'),
+('TG1301', 'TCS1212', 'norepeat'),
+
+
+('TG1302', 'TMS1233', 'norepeat'),
+('TG1302', 'ENG1212', 'norepeat'),
+('TG1302', 'TCS1212', 'norepeat'),
+('TG1302', 'TMS1213', 'norepeat'),
+('TG1302', 'TMS1223', 'norepeat'),
+('TG1302', 'ENT1353', 'norepeat'),
+
+('TG1303', 'ICT1212', 'norepeat'),
+('TG1303', 'ICT1222', 'norepeat'),
+('TG1303', 'ICT1242', 'norepeat'),
+('TG1303', 'ICT1253', 'norepeat'),
+('TG1303', 'ICT1233', 'norepeat'),
+('TG1303', 'ENG1212', 'norepeat'),
+('TG1303', 'TCS1212', 'norepeat'),
+
+
+
+('TG1304', 'ENG1212', 'norepeat'),
+('TG1304', 'TCS1212', 'norepeat'),
+('TG1304', 'BST1272', 'norepeat'),
+('TG1304', 'BST1622', 'norepeat'),
+('TG1304', 'BST1282', 'norepeat'),
+
+
+('TG1305', 'TMS1233', 'norepeat'),
+('TG1305', 'ENG1212', 'norepeat'),
+('TG1305', 'TCS1212', 'norepeat'),
+('TG1305', 'TMS1213', 'norepeat'),
+('TG1305', 'TMS1223', 'norepeat'),
+('TG1305', 'ENT1353', 'norepeat'),
+
+
+('TG1306', 'ICT1212', 'norepeat'),
+('TG1306', 'ICT1222', 'norepeat'),
+('TG1306', 'ICT1242', 'norepeat'),
+('TG1306', 'ICT1253', 'norepeat'),
+('TG1306', 'ICT1233', 'norepeat'),
+('TG1306', 'ENG1212', 'norepeat'),
+('TG1306', 'TCS1212', 'norepeat'),
+
+
+
+('TG1307', 'ENG1212', 'norepeat'),
+('TG1307', 'TCS1212', 'norepeat'),
+('TG1307', 'BST1272', 'norepeat'),
+('TG1307', 'BST1622', 'norepeat'),
+('TG1307', 'BST1282', 'norepeat'),
+
+
+('TG1308', 'TMS1233', 'norepeat'),
+('TG1308', 'ENG1212', 'norepeat'),
+('TG1308', 'TCS1212', 'norepeat'),
+('TG1308', 'TMS1213', 'norepeat'),
+('TG1308', 'TMS1223', 'norepeat'),
+('TG1308', 'ENT1353', 'norepeat'),
+
+('TG1309', 'ICT1212', 'norepeat'),
+('TG1309', 'ICT1222', 'norepeat'),
+('TG1309', 'ICT1242', 'norepeat'),
+('TG1309', 'ICT1253', 'norepeat'),
+('TG1309', 'ICT1233', 'norepeat'),
+('TG1309', 'ENG1212', 'norepeat'),
+('TG1309', 'TCS1212', 'norepeat'),
+
+
+
+('TG1310', 'ENG1212', 'norepeat'),
+('TG1310', 'TCS1212', 'norepeat'),
+('TG1310', 'BST1272', 'norepeat'),
+('TG1310', 'BST1622', 'norepeat'),
+('TG1310', 'BST1282', 'norepeat'),
+
+('TG1311', 'ICT1212', 'norepeat'),
+('TG1311', 'ICT1222', 'norepeat'),
+('TG1311', 'ICT1242', 'norepeat'),
+('TG1311', 'ICT1253', 'norepeat'),
+('TG1311', 'ICT1233', 'norepeat'),
+('TG1311', 'ENG1212', 'norepeat'),
+('TG1311', 'TCS1212', 'norepeat'),
+
+
+('TG1312', 'ICT1212', 'norepeat'),
+('TG1312', 'ICT1222', 'norepeat'),
+('TG1312', 'ICT1242', 'norepeat'),
+('TG1312', 'ICT1253', 'norepeat'),
+('TG1312', 'ICT1233', 'norepeat'),
+('TG1312', 'ENG1212', 'norepeat'),
+('TG1312', 'TCS1212', 'norepeat'),
+
+
+
+('TG1313', 'TMS1233', 'norepeat'),
+('TG1313', 'ENG1212', 'norepeat'),
+('TG1313', 'TCS1212', 'norepeat'),
+('TG1313', 'TMS1213', 'norepeat'),
+('TG1313', 'TMS1223', 'norepeat'),
+('TG1313', 'ENT1353', 'norepeat');
+
+
+
+
+
+
+
+--------------------------------------------------------------------------
+CREATE TABLE course(
+	Co_id CHAR(8) PRIMARY KEY NOT NULL,
+	Co_dep_id CHAR(8),
+	Status VARCHAR(2),
+	Co_name VARCHAR(50),
+	Credit DECIMAL(3,2),
+	Gpa_type CHAR(5),
+	The_hour INT,
+	Pra_hour INT,
+	Tot_lec_hour DECIMAL(4,2),
+	FOREIGN KEY(Co_dep_id) REFERENCES department(Dep_id) ON UPDATE CASCADE
+);
+
+
+
+ict
+INSERT INTO course VALUES
+('ICT1212','Dep01','t','Database Management Systems',2.00,'CGPA',2,0,15.00),
+('ICT1222','Dep01','p','Database Management Systems Practicum',2.00,'CGPA',0,2,15.00),
+('ICT1242','Dep01','t','Computer Architecture',2.00,'CGPA',2,0,15.00),
+('ICT1253','Dep01','m','Computer Networks',3.00,'CGPA',2,2,7.50),
+('ICT1233','Dep01','m','Server-Side Web Development',3.00,'CGPA',2,2,7.50),
+('TMS1233','Dep01','t','Discrete Mathematics',3.00,'CGPA',3,0,15.00);
+
+
+et/mul
+INSERT INTO course VALUES
+('ENG1212','Dep04','t','English II',2.00,'SGPA',2,0,15.00),
+('TCS1212','Dep04','t','Fundamentals of Management',2.00,'CGPA',2,0,15.00),
+('TMS1213','Dep02','m','Applied Calculus',3.00,'CGPA',2,2,7.50),
+('TMS1223','Dep02','m','Computer Programming Techniques',3.00,'CGPA',2,2,7.50),
+('ENT1353','Dep02','t','Engineering Properties of Matter',3.00,'CGPA',3,0,15.00);
+
+bst
+INSERT INTO course VALUES
+('BST1272','Dep03','m','Introduction to Fisheries Biology',2.00,'CGPA',2,2,7.50),
+('BST1622','Dep03','t','Basic Microbiology',2.00,'CGPA',3,0,15.00),
+('BST1282','Dep03','p','Fundamentals in Agriculture',2.00,'CGPA',0,2,15.00);
+
+-----------------------------------------------------------
+
