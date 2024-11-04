@@ -1,0 +1,25 @@
+CREATE TABLE ca_marks_repeaters (
+    Student_id                   CHAR(8)      NOT NULL,
+    Ca_co_id                     CHAR(8)      NOT NULL,
+    Q1_mark                      DECIMAL(5,2) NULL,
+    Q2_mark                      DECIMAL(5,2) NULL,
+    Q3_mark                      DECIMAL(5,2) NULL,
+    Q_total                      DECIMAL(5,2) NULL,
+    Assignment_Mini_project_mark DECIMAL(5,2) NULL,
+    Mid_exam_mark                DECIMAL(5,2) NULL,
+    CA_total                     DECIMAL(5,2) NULL,
+    PRIMARY KEY (Student_id, Ca_co_id)
+);
+
+
+INSERT INTO ca_marks_repeaters (Student_id, Ca_co_id, Q1_mark, Q2_mark, Q3_mark, Q_total, Assignment_Mini_project_mark, Mid_exam_mark, CA_total)
+VALUES
+    ('TG1101', 'ENT1353', 40.20, 23.20, 23.20, 3.17, 41.20, 90.20, 25.33),
+    ('TG1102', 'ICT1212', 50.50, 25.00, 25.00, 3.78, 65.00, 20.00, 14.28),
+    ('TG1102', 'ICT1222', 0.00, -1.00, -1.00, 0.00, 20.00, 10.00, 4.00),
+    ('TG1103', 'BST1272', 65.20, 45.20, 45.20, 5.52, 45.20, 25.20, 15.08),
+    ('TG1104', 'ENG1212', 70.20, 63.20, 63.20, 6.67, 67.20, 11.20, 15.63),
+    ('TG1105', 'ICT1212', 35.00, 75.23, 75.23, 7.52, 36.23, 32.23, 17.59),
+    ('TG1105', 'ICT1222', 65.00, 55.23, 55.23, 6.01, 42.23, 25.23, 15.28);
+
+

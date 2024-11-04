@@ -1,0 +1,16 @@
+
+
+
+CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'Admin123';
+CREATE USER 'Dean'@'localhost' IDENTIFIED BY 'Dean123';
+CREATE USER 'Lecturer'@'localhost' IDENTIFIED BY 'Lecturer123';
+CREATE USER 'TO'@'localhost' IDENTIFIED BY 'TO123';
+CREATE USER 'Student'@'localhost' IDENTIFIED BY 'Student123';
+
+GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO 'Dean'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REFERENCES, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER 
+ON *.* TO 'Lecturer'@'localhost';
+
+GRANT SELECT,UPDATE,INSERT ON attendance_table TO 'TO'@'localhost';
+GRANT SELECT ON marks_table TO 'Student'@'localhost';

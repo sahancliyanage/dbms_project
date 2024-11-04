@@ -1,0 +1,179 @@
+-----------------------
+CA-Percentage-procedure
+-----------------------
+
+DELIMITER //
+
+CREATE PROCEDURE ca_percentage()
+BEGIN
+    DROP TABLE IF EXISTS ca_percentage_tbl;
+    CREATE TABLE ca_percentage_tbl AS
+        SELECT 
+            student_id, 
+            ca_co_id AS course_id,
+            ROUND(CA_total / 40 * 100, 2) AS ca_eli_percentage
+        FROM 
+            ca_marks;
+END //
+
+DELIMITER ;
+
+
+call  ca_percentage();
+
+
+
+-----------------------
+ATT-Percentage-procedure
+-----------------------
+
+DELIMITER //
+
+CREATE PROCEDURE att_percentage()
+BEGIN
+    DROP TABLE IF EXISTS att_percentage_tbl;
+    CREATE TABLE att_percentage_tbl AS
+        SELECT 
+            a.Att_stu_id AS Student_ID,
+            a.Att_co_id AS Course_ID,
+            IF(a.Co_type = 't', (SUM(a.Pre_lec) * 100) / (c.The_week * MAX(a.Week)), (SUM(a.Pre_lec) * 100) / (c.Pra_week * MAX(a.Week))) AS att_eli_percentage
+        FROM 
+            attendence a
+        JOIN
+            course c ON a.Att_co_id = c.Co_id
+        GROUP BY 
+            a.Co_type, a.Att_co_id, a.Att_stu_id
+        ORDER BY
+            a.Att_stu_id, a.Att_co_id;
+END //
+
+DELIMITER ;
+
+
+
+
+call att_percentage();
+
+
+--------------------------------------
+ELIGIILITY-for-NON-REPEATERS
+--------------------------------------
+DELIMITER //
+
+CREATE PROCEDURE final_eligibility()
+BEGIN
+    DROP TABLE IF EXISTS final_eligibility_tbl;
+    CREATE TABLE final_eligibility_tbl AS
+    SELECT
+        c.student_id,
+        c.course_id,
+        c.ca_eli_percentage,
+        a.att_eli_percentage,
+        CASE 
+            WHEN a.att_eli_percentage >= 80 AND c.ca_eli_percentage >= 50 THEN 'EL'
+            ELSE 'NOT EL'
+        END AS final_eligibility
+    FROM 
+        att_percentage_tbl a
+    JOIN 
+        ca_percentage_tbl c ON a.student_id = c.student_id AND a.course_id = c.course_id;
+END //
+
+DELIMITER ;
+
+
+call final_eligibility();
+
+
+
+
+--------------------------------------
+ELIGIILITY-for-REPEATERS
+--------------------------------------
+
+DELIMITER //
+
+CREATE PROCEDURE final_eligibility_repeaters()
+BEGIN
+     DROP TABLE IF EXISTS final_eligibility_repeaters_tbl;
+     CREATE TABLE final_eligibility_repeaters_tbl AS
+         SELECT
+             Student_id,
+             Ca_co_id,
+             CA_total,
+             CASE
+                 WHEN CA_total >= 20 THEN 'EL'
+                 ELSE 'NOT EL'
+             END AS final_eligibility_repeaters
+         FROM
+             ca_marks_repeaters;
+
+END //
+
+DELIMITER ;
+
+
+call final_eligibility_repeaters();
+
+
+select * from final_eligibility_repeaters_tbl;
+
+
+-------------------------------------------
+BY-TG-NO
+-------------------------------------------
+
+
+
+whole Batch
+Whole Repeaters
+tgno
+coursecode
+tgno,coursecode
+
+
+
+DELIMITER //
+CREATE PROCEDURE eligibility_by_tg_no(IN tgno char(8))
+BEGIN
+select student_id,course_id,final_eligibility
+from final_eligibility_tbl
+where student_id = tgno;
+END //
+DELIMITER ;
+
+
+
+call eligibility_by_tg_no('TG1312');
+
+
+-------------------------------------------
+BY-COURSECODE
+-------------------------------------------
+
+DELIMITER //
+CREATE PROCEDURE eligibility_by_courseCode(IN courseCode char(8))
+BEGIN
+select student_id,course_id,final_eligibility
+from final_eligibility_tbl
+where course_id = courseCode;
+END //
+DELIMITER ;
+
+call eligibility_by_courseCode('ICT1212');
+
+
+------------------------------------------------
+BY-COURCECODE AND TGNO
+------------------------------------------------
+
+DELIMITER //
+CREATE PROCEDURE eligibility_by_tgno_and_courseCode(IN tgno char(8),IN courseCode char(8))
+BEGIN
+select student_id,course_id,final_eligibility
+from final_eligibility_tbl
+where student_id = tgno AND course_id = courseCode;
+END//
+DELIMITER ;
+
+call eligibility_by_tgno_and_courseCode('TG1312','ICT1212');
