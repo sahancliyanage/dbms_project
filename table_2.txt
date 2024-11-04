@@ -1,0 +1,243 @@
+//////////////////////////////////////////
+CREATE TABLE course(
+	Co_id CHAR(8) PRIMARY KEY NOT NULL,
+	Co_dep_id CHAR(8),
+	Status VARCHAR(2),
+	Co_name VARCHAR(50),
+	Credit DECIMAL(3,2),
+	Gpa_type CHAR(5),
+	The_hour INT,
+	Pra_hour INT,
+	The_week INT,
+	Pra_week INT,
+	FOREIGN KEY(Co_dep_id) REFERENCES department(Dep_id) ON UPDATE CASCADE
+);
+
+
+
+ict
+INSERT INTO course VALUES
+('ICT1212','Dep01','t','Database Management Systems',2.00,'CGPA',2,0,1,0),
+('ICT1222','Dep01','p','Database Management Systems Practicum',2.00,'CGPA',0,2,0,2),
+('ICT1242','Dep01','t','Computer Architecture',2.00,'CGPA',2,0,1,0),
+('ICT1253','Dep01','m','Computer Networks',3.00,'CGPA',2,2,1,1),
+('ICT1233','Dep01','m','Server Side Web Development',3.00,'CGPA',2,2,1,1),
+('TMS1233','Dep01','t','Discrete Mathematics',3.00,'CGPA',3,0,1,0);
+
+
+et/mul
+INSERT INTO course VALUES
+('ENG1212','Dep04','t','English II',2.00,'SGPA',2,0,1,0),
+('TCS1212','Dep04','t','Fundamentals of Management',2.00,'CGPA',2,0,1,0),
+
+('TMS1213','Dep02','t','Applied Calculus',3.00,'CGPA',3,0,1,0),
+('TMS1223','Dep02','m','Computer Programming Techniques',3.00,'CGPA',2,2,1,1),
+('ENT1353','Dep02','t','Engineering Properties of Matter',3.00,'CGPA',3,0,1,0);
+
+bst
+INSERT INTO course VALUES
+('BST1272','Dep03','m','Introduction to Fisheries Biology',2.00,'CGPA',2,2,1,1),
+('BST1622','Dep03','t','Basic Microbiology',2.00,'CGPA',3,0,1,0),
+('BST1282','Dep03','p','Fundamentals in Agriculture',2.00,'CGPA',0,2,0,1);
+
+
+//////////////////////////////////////////
+CREATE TABLE admin(
+	Ad_id CHAR(8) PRIMARY KEY NOT NULL,
+	Name VARCHAR(50),
+	Email VARCHAR(50),
+	Password VARCHAR(30),
+	Phone_number INT
+);
+
+INSERT INTO admin VALUES
+('AD01','K.M.Kaushalya Wijeratne','k.kaushalya.wijeratne@email.com','R!w4nth@92',0776307437),
+('AD02','P.Chinthaka Silva','c.chinthaka.silva@email.com','Ruhuna@786',0750303436),
+('AD03','M.M.Ruwantha Senanayake','ruwantha.senanayake@email.com','TechUOR*196',0720803796),
+('AD04','K.D.Amali Rathnayake','amali.rathnayake@email.com','A^miL@123',0725303436);
+
+
+//////////////////////////////////////////
+CREATE TABLE tec_officer(
+	Tech_id CHAR(4) PRIMARY KEY NOT NULL,
+	Tech_ad_id CHAR(8),
+	Name VARCHAR(50),
+	Email VARCHAR(50),
+	Password VARCHAR(30),
+	Phone_number INT,
+	FOREIGN KEY(Tech_ad_id) REFERENCES admin(Ad_id) ON UPDATE CASCADE
+);
+
+INSERT INTO tec_officer VALUES
+('T01','AD01','A.M.Dilshan Perera','dilshan.perera@example.com','$Di1shan!82@',0756386975),
+('T02','AD02','K.G.Priyadarshana Silva','priyadarshana.silva@example.com','Priya#43*D#',0756386975),
+('T03','AD03','R.P.Madhushanka Fernando ','madhushanka.fernando@example.com','Madhu&98!san',0756386975),
+('T04','AD04','N.L.Nuwan Bandara','nuwan.bandara@example.com','NuW@2023#ba',0756386975);
+
+
+//////////////////////////////////////////
+CREATE TABLE medical(
+	Medi_id CHAR(8) PRIMARY KEY NOT NULL,
+	Medi_Stu_id CHAR(8),
+	Medi_co_id CHAR(8),
+	Reason VARCHAR(100),
+	Submit_date DATE,
+	FOREIGN KEY(Medi_stu_id) REFERENCES student(Student_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Medi_co_id) REFERENCES course(Co_id) ON UPDATE CASCADE
+);
+
+
+INSERT INTO medical VALUES
+('ME001','TG1302','TCS1212','','2024-07-18'),
+('ME002','TG1304','BST1272','','2024-09-9'),
+('ME003','TG1307','BST1272','','2024-10-22');
+
+
+//////////////////////////////////////////
+CREATE TABLE attendence(
+	Att_stu_id CHAR(8) NOT NULL,
+	Att_co_id CHAR(8) NOT NULL,
+	Week INT,
+	Pre_lec INT,	
+	Co_type CHAR(2),
+	Att_tech_id CHAR(4),
+	Att_medi_id CHAR(10),
+   	Pre_date DATE,
+	PRIMARY KEY(Att_stu_id, Att_co_id, Week, Co_type),
+	FOREIGN KEY(Att_stu_id) REFERENCES student(student_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_tech_id) REFERENCES tec_officer(Tech_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_co_id) REFERENCES course(Co_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_medi_id) REFERENCES medical(Medi_id) ON UPDATE CASCADE
+);
+
+
+INSERT INTO attendence (Att_stu_id, Att_co_id, Week, Pre_lec, Co_type, Att_tech_id) VALUES
+('TG1301','ICT1233',1,1,'t','T01'),
+('TG1303','ICT1233',1,1,'t','T01'),
+('TG1306','ICT1233',1,1,'t','T01'),
+('TG1309','ICT1233',1,1,'t','T01'),
+('TG1311','ICT1233',1,1,'t','T01'),
+('TG1312','ICT1233',1,1,'t','T01'),
+
+('TG1301','ICT1233',1,1,'p','T01'),
+('TG1303','ICT1233',1,1,'p','T01'),
+('TG1306','ICT1233',1,1,'p','T01'),
+('TG1309','ICT1233',1,1,'p','T01'),
+('TG1311','ICT1233',1,1,'p','T01'),
+('TG1312','ICT1233',1,1,'p','T01'),
+
+('TG1301','ICT1212',1,1,'t','T01'),
+('TG1303','ICT1212',1,1,'t','T01'),
+('TG1306','ICT1212',1,1,'t','T01'),
+('TG1309','ICT1212',1,1,'t','T01'),
+('TG1311','ICT1212',1,1,'t','T01'),
+('TG1312','ICT1212',1,1,'t','T01'),
+
+('TG1301','ICT1222',1,2,'p','T01'),
+('TG1303','ICT1222',1,2,'p','T01'),
+('TG1306','ICT1222',1,2,'p','T01'),
+('TG1309','ICT1222',1,2,'p','T01'),
+('TG1311','ICT1222',1,2,'p','T01'),
+('TG1312','ICT1222',1,2,'p','T01'),
+
+('TG1301','TMS1233',1,1,'t','T01'),
+('TG1303','TMS1233',1,1,'t','T01'),
+('TG1306','TMS1233',1,1,'t','T01'),
+('TG1309','TMS1233',1,1,'t','T01'),
+('TG1311','TMS1233',1,1,'t','T01'),
+('TG1312','TMS1233',1,1,'t','T01'),
+
+('TG1301','ICT1242',1,1,'t','T01'),
+('TG1303','ICT1242',1,1,'t','T01'),
+('TG1306','ICT1242',1,1,'t','T01'),
+('TG1309','ICT1242',1,1,'t','T01'),
+('TG1311','ICT1242',1,1,'t','T01'),
+('TG1312','ICT1242',1,1,'t','T01'),
+
+('TG1301','ICT1253',1,1,'t','T01'),
+('TG1303','ICT1253',1,1,'t','T01'),
+('TG1306','ICT1253',1,1,'t','T01'),
+('TG1309','ICT1253',1,1,'t','T01'),
+('TG1311','ICT1253',1,1,'t','T01'),
+('TG1312','ICT1253',1,1,'t','T01'),
+
+('TG1301','ICT1253',1,1,'p','T01'),
+('TG1303','ICT1253',1,1,'p','T01'),
+('TG1306','ICT1253',1,1,'p','T01'),
+('TG1309','ICT1253',1,1,'p','T01'),
+('TG1311','ICT1253',1,1,'p','T01'),
+('TG1312','ICT1253',1,1,'p','T01'),
+/////english
+('TG1301','ENG1212',1,1,'t','T04'),
+('TG1303','ENG1212',1,1,'t','T04'),
+('TG1306','ENG1212',1,1,'t','T04'),
+('TG1309','ENG1212',1,1,'t','T04'),
+('TG1311','ENG1212',1,1,'t','T04'),
+('TG1312','ENG1212',1,1,'t','T04'),
+
+('TG1302','ENG1212',1,1,'t','T04'),
+('TG1305','ENG1212',1,1,'t','T04'),
+('TG1308','ENG1212',1,1,'t','T04'),
+('TG1313','ENG1212',1,1,'t','T04'),
+
+('TG1304','ENG1212',1,1,'t','T04'),
+('TG1307','ENG1212',1,1,'t','T04'),
+('TG1310','ENG1212',1,1,'t','T04'),
+/////managment
+('TG1301','TCS1212',1,1,'t','T04'),
+('TG1303','TCS1212',1,1,'t','T04'),
+('TG1306','TCS1212',1,1,'t','T04'),
+('TG1309','TCS1212',1,1,'t','T04'),
+('TG1311','TCS1212',1,1,'t','T04'),
+('TG1312','TCS1212',1,1,'t','T04'),
+
+('TG1302','TCS1212',1,1,'t','T04'),
+('TG1305','TCS1212',1,1,'t','T04'),
+('TG1308','TCS1212',1,1,'t','T04'),
+('TG1313','TCS1212',1,1,'t','T04'),
+
+('TG1304','TCS1212',1,1,'t','T04'),
+('TG1307','TCS1212',1,1,'t','T04'),
+('TG1310','TCS1212',1,1,'t','T04'),
+
+//////////////////et
+('TG1302','TMS1213',1,1,'t','T02'),
+('TG1305','TMS1213',1,1,'t','T02'),
+('TG1308','TMS1213',1,1,'t','T02'),
+('TG1313','TMS1213',1,1,'t','T02'),
+
+('TG1302','TMS1213',1,1,'p','T02'),
+('TG1305','TMS1213',1,1,'p','T02'),
+('TG1308','TMS1213',1,1,'p','T02'),
+('TG1313','TMS1213',1,1,'p','T02'),
+
+('TG1302','TMS1223',1,1,'t','T02'),
+('TG1305','TMS1223',1,1,'t','T02'),
+('TG1308','TMS1223',1,1,'t','T02'),
+('TG1313','TMS1223',1,1,'t','T02'),
+
+('TG1302','ENT1353',1,1,'t','T02'),
+('TG1305','ENT1353',1,1,'t','T02'),
+('TG1308','ENT1353',1,1,'t','T02'),
+('TG1313','ENT1353',1,1,'t','T02'),
+//////////////////bst
+('TG1304','BST1272',1,1,'t','T03'),
+('TG1307','BST1272',1,1,'t','T03'),
+('TG1310','BST1272',1,1,'t','T03'),
+
+('TG1304','BST1272',1,1,'p','T03'),
+('TG1307','BST1272',1,1,'p','T03'),
+('TG1310','BST1272',1,1,'p','T03'),
+
+('TG1304','BST1622',1,1,'t','T03'),
+('TG1307','BST1622',1,1,'t','T03'),
+('TG1310','BST1622',1,1,'t','T03'),
+
+('TG1304','BST1282',1,1,'p','T03'),
+('TG1307','BST1282',1,1,'p','T03'),
+('TG1310','BST1282',1,1,'p','T03'),
+week2
+
+
+
+

@@ -1,0 +1,46 @@
+//////////////////////////////////////////
+CREATE TABLE tec_officer(
+	Tech_id CHAR(4) PRIMARY KEY NOT NULL,
+	Tech_ad_id CHAR(8),
+	Name VARCHAR(50),
+	Email VARCHAR(50),
+	Password VARCHAR(30),
+	Phone_number INT,
+	FOREIGN KEY(Tech_ad_id) REFERENCES admin(Ad_id) ON UPDATE CASCADE
+);
+
+INSERT INTO tec_officer VALUES
+('T01','AD01','A.M.Dilshan Perera','dilshan.perera@example.com','$Di1shan!82@',0756386975),
+('T02','AD02','K.G.Priyadarshana Silva','priyadarshana.silva@example.com','Priya#43*D#',0756386975),
+('T03','AD03','R.P.Madhushanka Fernando ','madhushanka.fernando@example.com','Madhu&98!san',0756386975),
+('T04','AD04','N.L.Nuwan Bandara','nuwan.bandara@example.com','NuW@2023#ba',0756386975);
+
+//////////////////////////////////////////
+CREATE TABLE admin(
+	Ad_id CHAR(8) PRIMARY KEY NOT NULL,
+	Name VARCHAR(50),
+	Email VARCHAR(50),
+	Password VARCHAR(30),
+	Phone_number INT
+);
+
+INSERT INTO admin VALUES
+('AD01','K.M.Kaushalya Wijeratne','k.kaushalya.wijeratne@email.com','R!w4nth@92',0776307437),
+('AD02','P.Chinthaka Silva','c.chinthaka.silva@email.com','Ruhuna@786',0750303436),
+('AD03','M.M.Ruwantha Senanayake','ruwantha.senanayake@email.com','TechUOR*196',0720803796),
+('AD04','K.D.Amali Rathnayake','amali.rathnayake@email.com','A^miL@123',0725303436);
+
+//////////////////////////////////////////
+CREATE TABLE medical(
+	Medi_id CHAR(8) PRIMARY KEY NOT NULL,
+	Medi_Stu_id CHAR(8),
+	Reason VARCHAR(100),
+	Submit_date DATE,
+	FOREIGN KEY(Medi_stu_id) REFERENCES student(Student_id) ON UPDATE CASCADE
+);
+
+
+INSERT INTO medical VALUES
+('ME001','TG1302','','2024-07-18'),
+('ME002','TG1304','','2024-09-9'),
+('ME003','TG1307','','2024-10-22');
