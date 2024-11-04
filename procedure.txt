@@ -1,6 +1,6 @@
 ---------------main---------------
 DELIMITER //
-CREATE PROCEDURE One_student_Attendance(IN In_stu_id CHAR(8), IN In_co_id CHAR(8))
+CREATE PROCEDURE one_student_eligibility(IN In_stu_id CHAR(8), IN In_co_id CHAR(8))
 BEGIN   
     DECLARE course_status CHAR(2);
     SELECT Status INTO course_status FROM course WHERE Co_id = In_co_id LIMIT 1;
@@ -39,33 +39,14 @@ BEGIN
 END //
 -------------------end-------------------
 
-firstly run this code
-
-CREATE VIEW All_student_eligible AS
-        SELECT 
-            a.Att_stu_id AS Student_ID,
-            a.Att_co_id As Course_ID,
-            c.Co_name AS Course_name,
-            IF(a.Co_type = 't', 'Theory', 'Practicum') AS Course_type,
-            IF(a.Co_type = 't', (SUM(a.Pre_lec))*100/(c.The_week * MAX(a.Week)), (SUM(a.Pre_lec))*100/(c.Pra_week * MAX(a.Week))) AS Eligibility
-        FROM 
-            attendence a
-        JOIN
-            course c ON a.Att_co_id = c.Co_id
-        GROUP BY 
-            a.Co_type, a.Att_co_id, Att_stu_id
-        ORDER BY
-        a.Att_stu_id, a.Att_co_id;
-
-
 
 ----------all student----------------
 delimiter //
 
-CREATE PROCEDURE All_student_eligibility()
+CREATE PROCEDURE all_student_eligibility()
 BEGIN
-    DROP VIEW All_student_eligible;
-    CREATE VIEW All_student_eligible AS
+    DROP VIEW all_student_eligible;
+    CREATE VIEW all_student_eligible AS
         SELECT 
             a.Att_stu_id AS Student_ID,
             a.Att_co_id As Course_ID,
@@ -82,69 +63,3 @@ BEGIN
         a.Att_stu_id, a.Att_co_id;
     SELECT * FROM All_student_eligible;
 END //
-
-
-----------update view table----------------
-
-delimiter //
-CREATE PROCEDURE update_table()
-BEGIN
-    DROP VIEW All_student_eligible;
-    CREATE VIEW All_student_eligible AS
-        SELECT 
-            a.Att_stu_id AS Student_ID,
-            a.Att_co_id As Course_ID,
-            c.Co_name AS Course_name,
-            IF(a.Co_type = 't', 'Theory', 'Practicum') AS Course_type,
-            IF(a.Co_type = 't', (SUM(a.Pre_lec))*100/(c.The_week * MAX(a.Week)), (SUM(a.Pre_lec))*100/(c.Pra_week * MAX(a.Week))) AS Eligibility
-        FROM 
-            attendence a
-        JOIN
-            course c ON a.Att_co_id = c.Co_id
-        GROUP BY 
-            a.Co_type, a.Att_co_id, Att_stu_id
-        ORDER BY
-        a.Att_stu_id, a.Att_co_id;
-END //
-
-
-----------All subject and one student----------------
-
-delimiter //
-CREATE PROCEDURE One_student_all_subject(IN in_student_id CHAR(8))
-BEGIN
-    CALL update_table;
-    SELECT * FROM All_student_eligible
-    WHERE Student_ID = in_student_id;
-END//
-
-
-CALL One_student_all_subject('');
-
-
------------One subject and all student----------------
-
-delimiter //
-CREATE PROCEDURE One_subject(IN in_course_id CHAR(8))
-BEGIN
-    CALL update_table;
-    SELECT * FROM All_student_eligible
-    WHERE course_ID = in_course_id;
-END //
-
-CALL One_subject('');
-
-
----------------update medical for attendence----------------------
-
-delimiter//
-
-CREATE PROCEDURE update_medical(IN student_id CHAR(8), IN course_id CHAR(8), IN in_week INT, IN course_type CHAR(2))
-BEGIN
-    UPDATE attendence
-    SET Pre_lec = (1 + (SELECT Pre_lec FROM attendence WHERE Att_stu_id = student_id AND Att_co_id = course_id AND Week = in_week AND Co_type = course_type))        
-    WHERE Att_stu_id = student_id AND Att_co_id = course_id AND Week = in_week AND Co_type = course_type;
-END //
-
------------student id / course id / week / course type 'p->Practicum / t->Theory'-----------
-CALL update_attendence();
