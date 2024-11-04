@@ -1,0 +1,232 @@
+
+CREATE TABLE Endmark (
+    student_id CHAR(8) NOT NULL,
+    course_id CHAR(8) NOT NULL,
+    ca_mark DECIMAL(5,2),
+    end_mark DECIMAL(5,2),
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES student(Student_id),
+    FOREIGN KEY (course_id) REFERENCES course(Co_id)
+   
+);
+
+
+INSERT INTO Endmark (student_id, course_id, ca_mark,end_mark) VALUES
+('TG1301', 'ICT1212', 43.25, '48.00'),
+('TG1301', 'ICT1222', 29.75, '42.00'),
+('TG1301', 'ICT1233', 36.50, '45.00'),
+('TG1301', 'ICT1242', 48.13, '38.00'),
+('TG1301', 'ICT1253', 27.25, '30.00'),
+('TG1301', 'TCS1212', 34.88, '47.00'),
+('TG1302', 'ENG1212', 24.63, '39.00'),
+('TG1302', 'TCS1212', 31.63, '35.00'),
+('TG1302', 'TMS1223', 46.38, '41.00'),
+('TG1303', 'ENG1212', 33.88, '44.00'),
+('TG1303', 'ICT1212', 42.63, '29.00'),
+('TG1303', 'ICT1222', 29.63, '40.00'),
+('TG1303', 'ICT1233', 47.50, '37.00'),
+('TG1303', 'ICT1253', 39.38, '33.00'),
+('TG1303', 'TCS1212', 41.38, '36.00'),
+('TG1304', 'BST1272', 37.25, '49.00'),
+('TG1304', 'BST1622', 50.00, '25.00'),
+('TG1304', 'ENG1212', 28.88, '43.00'),
+('TG1304', 'TCS1212', 45.38, '32.00'),
+('TG1305', 'ENT1353', 25.63, '31.00'),
+('TG1305', 'TCS1212', 34.75, '29.00'),
+('TG1305', 'TMS1223', 41.25, '46.00'),
+('TG1306', 'ICT1212', 37.00, '28.00'),
+('TG1306', 'ICT1222', 46.25, '47.00'),
+('TG1306', 'ICT1233', 35.25, '39.00'),
+('TG1306', 'ICT1242', 48.25, '27.00'),
+('TG1306', 'ICT1253', 30.88, '34.00'),
+('TG1307', 'BST1272', 45.25, '50.00'),
+('TG1307', 'ENG1212', 24.00, '28.00'),
+('TG1307', 'TCS1212', 39.00, '29.00'),
+('TG1308', 'ENG1212', 31.38, '44.00'),
+('TG1308', 'ENT1353', 47.88, '30.00'),
+('TG1308', 'TMS1213', 35.13, '36.00'),
+('TG1308', 'TMS1223', 33.50, '32.00'),
+('TG1309', 'ENG1212', 38.75, '31.00'),
+('TG1309', 'ICT1212', 29.75, '26.00'),
+('TG1309', 'ICT1222', 36.25, '33.00'),
+('TG1309', 'ICT1242', 43.63, '34.00'),
+('TG1309', 'ICT1253', 28.75, '39.00'),
+('TG1310', 'BST1272', 30.88, '27.00'),
+('TG1310', 'BST1282', 48.13, '41.00'),
+('TG1310', 'BST1622', 42.38, '38.00'),
+('TG1310', 'ENG1212', 50.00, '46.00'),
+('TG1310', 'TCS1212', 47.38, '40.00'),
+('TG1311', 'ENG1212', 49.50, '45.00'),
+('TG1311', 'ICT1212', 36.75, '28.00'),
+('TG1311', 'ICT1222', 47.25, '37.00'),
+('TG1311', 'ICT1233', 45.25, '33.00'),
+('TG1311', 'ICT1253', 27.75, '40.00'),
+('TG1311', 'TCS1212', 29.13, '44.00'),
+('TG1312', 'ICT1233', 40.88, '46.00'),
+('TG1312', 'ICT1242', 46.63, '28.00'),
+('TG1312', 'ICT1253', 31.75, '35.00'),
+('TG1312', 'TCS1212', 49.25, '30.00'),
+('TG1313', 'ENT1353', 35.13, '34.00'),
+('TG1313', 'TMS1213', 42.50, '39.00'),
+('TG1313', 'TMS1223', 30.75, '33.00');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+create view Final_result as
+select student_id,
+course_id,
+ca_mark,
+end_mark,
+(ca_mark + end_mark) as total_mark
+from Endmark;
+
+
+
+CREATE VIEW stu_grade AS
+SELECT 
+    student_id,
+    course_id,
+    CASE 
+        WHEN (ca_mark + end_mark) >= 85 THEN 'A+'
+        WHEN (ca_mark + end_mark) >= 70 THEN 'A'
+        WHEN (ca_mark + end_mark) >= 65 THEN 'A-'
+        WHEN (ca_mark + end_mark) >= 60 THEN 'B+'
+        WHEN (ca_mark + end_mark) >= 55 THEN 'B'
+        WHEN (ca_mark + end_mark) >= 50 THEN 'B-'
+        WHEN (ca_mark + end_mark) >= 45 THEN 'C+'
+        WHEN (ca_mark + end_mark) >= 40 THEN 'C'
+        WHEN (ca_mark + end_mark) >= 35 THEN 'C-'
+        WHEN (ca_mark + end_mark) >= 30 THEN 'D+'
+        WHEN (ca_mark + end_mark) >= 25 THEN 'D'
+        WHEN (ca_mark + end_mark) >= 0  THEN 'E'
+        ELSE 'F'  -- Optional: for marks below 0, if applicable
+    END AS grade_marks
+FROM 
+    Endmark;
+
+
+
+There should be a way to see marks for each subject, student and as a whole batch.
+
+create procedure fcourse_mark(IN cid char(8))
+
+begin 
+
+   select student_id,course_id,total_mark as Fmarks from final_result where course_id = cid ;
+
+end//
+
+create procedure fstudent_mark(IN sid char(8))
+
+begin 
+
+   select student_id,course_id,total_mark as Fmarks from final_result where student_id = sid ;
+
+end//
+
+
+create procedure fcourse_grade(IN cid char(8))
+
+begin 
+
+   select student_id,course_id,grade_marks from stu_grade where course_id = cid ;
+
+end//
+
+
+create procedure fstudent_grade(IN sid char(8))
+
+begin 
+
+   select student_id,course_id,grade_marks from stu_grade where student_id = sid ;
+
+end//
+
+
+
+
+
+
+
+CREATE VIEW grade_point AS
+SELECT 
+    student_id,
+    course_id,
+    CASE 
+        WHEN (ca_mark + end_mark) >= 85 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 70 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 65 THEN 3.7
+        WHEN (ca_mark + end_mark) >= 60 THEN 3.5
+        WHEN (ca_mark + end_mark) >= 55 THEN 3.0
+        WHEN (ca_mark + end_mark) >= 50 THEN 2.7
+        WHEN (ca_mark + end_mark) >= 45 THEN 2.5
+        WHEN (ca_mark + end_mark) >= 40 THEN 2.0
+        WHEN (ca_mark + end_mark) >= 35 THEN 1.7
+        WHEN (ca_mark + end_mark) >= 30 THEN 1.5
+        WHEN (ca_mark + end_mark) >= 25 THEN 1.0
+        WHEN (ca_mark + end_mark) >= 0  THEN 0.5
+        ELSE 0.0
+    END AS grade_point
+FROM 
+    Endmark;
+
+
+
+
+
+
+
+create view dgrade as 
+select student_id,
+course_id,
+grade_point,
+credit
+from
+grade_point g
+inner join course c on g.course_id =c.co_id; 
+
+
+
+
+
+
+
+
+
+
+create view fgrade_point as 
+select student_id,
+course_id,
+(grade_point * credit) as "Grade Points for Course"
+from dgrade;
+
+
+
+
+
+
+
+  
