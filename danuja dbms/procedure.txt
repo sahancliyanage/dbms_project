@@ -1,0 +1,37 @@
+create procedure fcourse_mark(IN cid char(8))
+
+begin 
+
+   select student_id,course_id,total_mark as Fmarks from final_result where course_id = cid ;
+
+end//
+
+create procedure fstudent_mark(IN sid char(8))
+
+begin 
+
+   select student_id,course_id,total_mark as Fmarks from final_result where student_id = sid ;
+
+end//
+
+
+create procedure fcourse_grade(IN cid char(8))
+
+begin 
+
+   select student_id,course_id,grade_marks from stu_grade where course_id = cid ;
+
+end//
+
+
+create procedure fstudent_grade(IN sid char(8))
+
+begin 
+
+   select student_id,course_id,grade_marks from stu_grade where student_id = sid ;
+
+end//
+
+
+
+

@@ -1,0 +1,92 @@
+create view Final_result as
+select student_id,
+course_id,
+ca_mark,
+end_mark,
+(ca_mark + end_mark) as total_mark
+from Endmark;
+
+
+
+CREATE VIEW stu_grade AS
+SELECT 
+    student_id,
+    course_id,
+    CASE 
+        WHEN (ca_mark + end_mark) >= 85 THEN 'A+'
+        WHEN (ca_mark + end_mark) >= 70 THEN 'A'
+        WHEN (ca_mark + end_mark) >= 65 THEN 'A-'
+        WHEN (ca_mark + end_mark) >= 60 THEN 'B+'
+        WHEN (ca_mark + end_mark) >= 55 THEN 'B'
+        WHEN (ca_mark + end_mark) >= 50 THEN 'B-'
+        WHEN (ca_mark + end_mark) >= 45 THEN 'C+'
+        WHEN (ca_mark + end_mark) >= 40 THEN 'C'
+        WHEN (ca_mark + end_mark) >= 35 THEN 'C-'
+        WHEN (ca_mark + end_mark) >= 30 THEN 'D+'
+        WHEN (ca_mark + end_mark) >= 25 THEN 'D'
+        WHEN (ca_mark + end_mark) >= 0  THEN 'E'
+        ELSE 'F'  -- Optional: for marks below 0, if applicable
+    END AS grade_marks
+FROM 
+    Endmark;
+
+
+
+
+
+
+CREATE VIEW grade_point AS
+SELECT 
+    student_id,
+    course_id,
+    CASE 
+        WHEN (ca_mark + end_mark) >= 85 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 70 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 65 THEN 3.7
+        WHEN (ca_mark + end_mark) >= 60 THEN 3.5
+        WHEN (ca_mark + end_mark) >= 55 THEN 3.0
+        WHEN (ca_mark + end_mark) >= 50 THEN 2.7
+        WHEN (ca_mark + end_mark) >= 45 THEN 2.5
+        WHEN (ca_mark + end_mark) >= 40 THEN 2.0
+        WHEN (ca_mark + end_mark) >= 35 THEN 1.7
+        WHEN (ca_mark + end_mark) >= 30 THEN 1.5
+        WHEN (ca_mark + end_mark) >= 25 THEN 1.0
+        WHEN (ca_mark + end_mark) >= 0  THEN 0.5
+        ELSE 0.0
+    END AS grade_point
+FROM 
+    Endmark;
+
+
+
+
+
+
+
+create view dgrade as 
+select student_id,
+course_id,
+grade_point,
+credit
+from
+grade_point g
+inner join course c on g.course_id =c.co_id; 
+
+
+
+
+
+
+
+
+
+
+create view fgrade_point as 
+select student_id,
+course_id,
+(grade_point * credit) as "Grade Points for Course"
+from dgrade;
+
+
+
+
