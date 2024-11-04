@@ -1,0 +1,177 @@
+CREATE TABLE attendence(
+	Att_stu_id CHAR(8) NOT NULL,
+	Att_co_id CHAR(8) NOT NULL,
+	Week INT,
+	Pre_lec INT,	
+	Co_type CHAR(2),
+	Att_tech_id CHAR(4),
+	Att_medi_id CHAR(10),
+	PRIMARY KEY(Att_stu_id, Att_co_id, Week, Co_type),
+	FOREIGN KEY(Att_stu_id) REFERENCES student(student_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_tech_id) REFERENCES tec_officer(Tech_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_co_id) REFERENCES course(Co_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_medi_id) REFERENCES medical(Medi_id) ON UPDATE CASCADE
+);
+
+
+
+CREATE TABLE Endmark (
+    student_id CHAR(8) NOT NULL,
+    course_id CHAR(8) NOT NULL,
+    ca_mark DECIMAL(5,2),
+    end_mark DECIMAL(5,2),
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES student(Student_id),
+    FOREIGN KEY (course_id) REFERENCES course(Co_id)
+   
+);
+
+
+
+INSERT INTO Endmark (student_id, course_id, ca_mark, end_mark) VALUES
+('TG1101', 'ENT1353', 32.00, 48.00), 
+('TG1102', 'ICT1212', 28.00, 50.00),  
+('TG1102', 'ICT1222', 36.00, 30.00), 
+('TG1103', 'BST1272', 40.00, 20.00), 
+('TG1104', 'ENG1212', 30.00, 40.00),  
+('TG1105', 'ICT1212', 38.00, 52.00), 
+('TG1105', 'ICT1222', 35.00, 45.00),  
+('TG1301', 'ICT1212', 29.00, 58.00),  
+('TG1301', 'ICT1253', 34.00, 46.00),  
+('TG1302', 'ENT1353', 40.00, 54.00);  
+
+create view Final_result as
+select student_id,
+course_id,
+ca_mark,
+end_mark,
+(ca_mark + end_mark) as total_mark
+from Endmark;
+
+
+
+CREATE VIEW stu_grade AS
+SELECT 
+    student_id,
+    course_id,
+    CASE 
+        WHEN (ca_mark + end_mark) >= 85 THEN 'A+'
+        WHEN (ca_mark + end_mark) >= 70 THEN 'A'
+        WHEN (ca_mark + end_mark) >= 65 THEN 'A-'
+        WHEN (ca_mark + end_mark) >= 60 THEN 'B+'
+        WHEN (ca_mark + end_mark) >= 55 THEN 'B'
+        WHEN (ca_mark + end_mark) >= 50 THEN 'B-'
+        WHEN (ca_mark + end_mark) >= 45 THEN 'C+'
+        WHEN (ca_mark + end_mark) >= 40 THEN 'C'
+        WHEN (ca_mark + end_mark) >= 35 THEN 'C-'
+        WHEN (ca_mark + end_mark) >= 30 THEN 'D+'
+        WHEN (ca_mark + end_mark) >= 25 THEN 'D'
+        WHEN (ca_mark + end_mark) >= 0  THEN 'E'
+        ELSE 'F'  -- Optional: for marks below 0, if applicable
+    END AS grade_marks
+FROM 
+    Endmark;
+
+
+
+There should be a way to see marks for each subject, student and as a whole batch.
+
+create procedure fcourse_mark(IN cid char(8))
+
+begin 
+
+   select student_id,course_id,total_mark as Fmarks from final_result where course_id = cid ;
+
+end//
+
+create procedure fstudent_mark(IN sid char(8))
+
+begin 
+
+   select student_id,course_id,total_mark as Fmarks from final_result where student_id = sid ;
+
+end//
+
+
+create procedure fcourse_grade(IN cid char(8))
+
+begin 
+
+   select student_id,course_id,grade_marks from stu_grade where course_id = cid ;
+
+end//
+
+
+create procedure fstudent_grade(IN sid char(8))
+
+begin 
+
+   select student_id,course_id,grade_marks from stu_grade where student_id = sid ;
+
+end//
+
+
+
+
+
+
+
+CREATE VIEW grade_point AS
+SELECT 
+    student_id,
+    course_id,
+    CASE 
+        WHEN (ca_mark + end_mark) >= 85 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 70 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 65 THEN 3.7
+        WHEN (ca_mark + end_mark) >= 60 THEN 3.5
+        WHEN (ca_mark + end_mark) >= 55 THEN 3.0
+        WHEN (ca_mark + end_mark) >= 50 THEN 2.7
+        WHEN (ca_mark + end_mark) >= 45 THEN 2.5
+        WHEN (ca_mark + end_mark) >= 40 THEN 2.0
+        WHEN (ca_mark + end_mark) >= 35 THEN 1.7
+        WHEN (ca_mark + end_mark) >= 30 THEN 1.5
+        WHEN (ca_mark + end_mark) >= 25 THEN 1.0
+        WHEN (ca_mark + end_mark) >= 0  THEN 0.5
+        ELSE 0.0
+    END AS grade_point
+FROM 
+    Endmark;
+
+
+
+
+
+
+
+create view dgrade as 
+select student_id,
+course_id,
+grade_point,
+credit
+from
+grade_point g
+inner join course c on g.course_id =c.co_id; 
+
+
+
+
+
+
+
+
+
+
+create view fgrade_point as 
+select student_id,
+course_id,
+(grade_point * credit) as "Grade Points for Course"
+from dgrade;
+
+
+
+
+
+
+
+  
