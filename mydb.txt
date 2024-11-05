@@ -169,6 +169,22 @@ course_id,
 from dgrade;
 
 
+create view sgpa as
+SELECT 
+    student_id,
+    SUM(grade_point * credit) AS total_weighted_grade_points,
+    SUM(credit) AS total_credits,
+    ROUND(SUM(grade_point * credit) / SUM(credit), 2) AS sgpa
+FROM 
+    dgrade
+GROUP BY 
+    student_id;
+
+
+ create procedure student_sgpa (IN stid char(8))
+    begin
+    select student_id,sgpa from sgpa where student_id = stid;
+    end //
 
 
 
