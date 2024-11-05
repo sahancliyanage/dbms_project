@@ -1,4 +1,4 @@
----------------main---------------one_student_eligibility
+---------------main---------------one_student_eligibility ////drop procedure
 DELIMITER //
 CREATE PROCEDURE one_student_attendence(IN In_stu_id CHAR(8), IN In_co_id CHAR(8))
 BEGIN   
@@ -10,7 +10,7 @@ BEGIN
     END IF;
 END //
 
-CALL one_student_eligibility('TG1306', 'ICT1233');
+CALL one_student_attendence('TG1306', 'ICT1233');
 
 ---------------sub1---------------
 DELIMITER //
@@ -66,7 +66,7 @@ BEGIN
     SELECT * FROM All_student_eligible;
 END //
 
-CALL all_student_eligibility();
+CALL all_student_attendence();
 
 
 ----------all student and all course----------------
@@ -115,3 +115,19 @@ BEGIN
 END //
 
 CALL show_medical();
+
+
+///////////////////////view///////////////////////
+
+-----------up 80 attendence--------------
+
+CREATE VIEW att_eligible_up AS
+    SELECT * FROM all_student_eligible
+    WHERE Eligibility >= 80;
+
+
+-----------down 80 attendence--------------
+
+CREATE VIEW att_eligible_down AS
+    SELECT * FROM all_student_eligible
+    WHERE Eligibility <= 80;

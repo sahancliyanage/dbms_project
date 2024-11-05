@@ -1,0 +1,16 @@
+-------------------Vihaga-------------------
+
+CALL one_student_eligibility('TG1306', 'ICT1233');
+CALL all_student_attendence();
+CALL all_student_course_atte();
+CALL medical_update('ME001', 'TG1306', 'ENG1212', 't', '2024-08-23'); //Don't use procedure
+CALL show_medical();
+
+----------------------view----------------------
+
+att_eligible_up 		////80 <
+att_eligible_down		////80 >
+all_student_eligible		/// theory.practicum
+all_student_course        	/// all subject (theory.practicum)
+all_student_all_course		/// all subject
+
