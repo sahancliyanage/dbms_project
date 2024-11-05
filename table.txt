@@ -15,6 +15,7 @@ INSERT INTO tec_officer VALUES
 ('T03','AD03','R.P.Madhushanka Fernando ','madhushanka.fernando@example.com','Madhu&98!san',0756386975),
 ('T04','AD04','N.L.Nuwan Bandara','nuwan.bandara@example.com','NuW@2023#ba',0756386975);
 
+
 //////////////////////////////////////////
 CREATE TABLE admin(
 	Ad_id CHAR(8) PRIMARY KEY NOT NULL,
@@ -25,22 +26,82 @@ CREATE TABLE admin(
 );
 
 INSERT INTO admin VALUES
-('AD01','K.M.Kaushalya Wijeratne','k.kaushalya.wijeratne@email.com','R!w4nth@92',0776307437),
-('AD02','P.Chinthaka Silva','c.chinthaka.silva@email.com','Ruhuna@786',0750303436),
-('AD03','M.M.Ruwantha Senanayake','ruwantha.senanayake@email.com','TechUOR*196',0720803796),
-('AD04','K.D.Amali Rathnayake','amali.rathnayake@email.com','A^miL@123',0725303436);
+('AD01','K.M.Kaushalya Wijeratne','k.kaushalya.wijeratne@email.com','R!w4nth@92',0776307437);
+
 
 //////////////////////////////////////////
 CREATE TABLE medical(
 	Medi_id CHAR(8) PRIMARY KEY NOT NULL,
 	Medi_Stu_id CHAR(8),
+	Medi_co_id CHAR(8),
+	Medi_co_type CHAR(2),
 	Reason VARCHAR(100),
 	Submit_date DATE,
-	FOREIGN KEY(Medi_stu_id) REFERENCES student(Student_id) ON UPDATE CASCADE
+	FOREIGN KEY(Medi_stu_id) REFERENCES student(Student_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Medi_co_id) REFERENCES course(Co_id) ON UPDATE CASCADE
 );
 
 
 INSERT INTO medical VALUES
-('ME001','TG1302','','2024-07-18'),
-('ME002','TG1304','','2024-09-9'),
-('ME003','TG1307','','2024-10-22');
+('ME001','TG1306','ENG1212','t','Sudden onset of chest pain and shortness of breath','2024-08-23');
+
+
+//////////////////////////////////////////
+CREATE TABLE course(
+	Co_id CHAR(8) PRIMARY KEY NOT NULL,
+	Co_dep_id CHAR(8),
+	Status VARCHAR(2),
+	Co_name VARCHAR(50),
+	Credit DECIMAL(3,2),
+	Gpa_type CHAR(5),
+	The_hour INT,
+	Pra_hour INT,
+	The_week INT,
+	Pra_week INT,
+	FOREIGN KEY(Co_dep_id) REFERENCES department(Dep_id) ON UPDATE CASCADE
+);
+
+
+
+ict
+INSERT INTO course VALUES
+('ICT1212','Dep01','t','Database Management Systems',2.00,'CGPA',2,0,1,0),
+('ICT1222','Dep01','p','Database Management Systems Practicum',2.00,'CGPA',0,2,0,2),
+('ICT1242','Dep01','t','Computer Architecture',2.00,'CGPA',2,0,1,0),
+('ICT1253','Dep01','m','Computer Networks',3.00,'CGPA',2,2,1,1),
+('ICT1233','Dep01','m','Server Side Web Development',3.00,'CGPA',2,2,1,1),
+('TMS1233','Dep01','t','Discrete Mathematics',3.00,'CGPA',3,0,1,0);
+
+
+et/mul
+INSERT INTO course VALUES
+('ENG1212','Dep04','t','English II',2.00,'SGPA',2,0,1,0),
+('TCS1212','Dep04','t','Fundamentals of Management',2.00,'CGPA',2,0,1,0),
+
+('TMS1213','Dep02','t','Applied Calculus',3.00,'CGPA',3,0,1,0),
+('TMS1223','Dep02','m','Computer Programming Techniques',3.00,'CGPA',2,2,1,1),
+('ENT1353','Dep02','t','Engineering Properties of Matter',3.00,'CGPA',3,0,1,0);
+
+bst
+INSERT INTO course VALUES
+('BST1272','Dep03','m','Introduction to Fisheries Biology',2.00,'CGPA',2,2,1,1),
+('BST1622','Dep03','t','Basic Microbiology',2.00,'CGPA',3,0,1,0),
+('BST1282','Dep03','p','Fundamentals in Agriculture',2.00,'CGPA',0,2,0,1);
+
+
+//////////////////////////////////////////
+CREATE TABLE attendence(
+	Att_stu_id CHAR(8) NOT NULL,
+	Att_co_id CHAR(8) NOT NULL,
+	Week INT,
+	Pre_lec INT,	
+	Co_type CHAR(2),
+	Att_tech_id CHAR(4),
+	Att_medi_id CHAR(10),
+    	Pre_date DATE,
+	PRIMARY KEY(Att_stu_id, Att_co_id, Week, Co_type),
+	FOREIGN KEY(Att_stu_id) REFERENCES student(student_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_tech_id) REFERENCES tec_officer(Tech_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_co_id) REFERENCES course(Co_id) ON UPDATE CASCADE,
+	FOREIGN KEY(Att_medi_id) REFERENCES medical(Medi_id) ON UPDATE CASCADE
+);
