@@ -90,3 +90,27 @@ from dgrade;
 
 
 
+CREATE VIEW grade_point AS
+SELECT 
+    student_id,
+    course_id,
+    CASE 
+        WHEN (ca_mark + end_mark) >= 85 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 70 THEN 4.0
+        WHEN (ca_mark + end_mark) >= 65 THEN 3.7
+        WHEN (ca_mark + end_mark) >= 60 THEN 3.5
+        WHEN (ca_mark + end_mark) >= 55 THEN 3.0
+        WHEN (ca_mark + end_mark) >= 50 THEN 2.7
+        WHEN (ca_mark + end_mark) >= 45 THEN 2.5
+        WHEN (ca_mark + end_mark) >= 40 THEN 2.0
+        WHEN (ca_mark + end_mark) >= 35 THEN 1.7
+        WHEN (ca_mark + end_mark) >= 30 THEN 1.5
+        WHEN (ca_mark + end_mark) >= 25 THEN 1.0
+        WHEN (ca_mark + end_mark) >= 0  THEN 0.5
+        ELSE 0.0
+    END AS grade_point
+FROM 
+    Endmark;
+
+
+
