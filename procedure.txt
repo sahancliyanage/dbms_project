@@ -1,6 +1,6 @@
----------------main---------------
+---------------main---------------one_student_eligibility
 DELIMITER //
-CREATE PROCEDURE one_student_eligibility(IN In_stu_id CHAR(8), IN In_co_id CHAR(8))
+CREATE PROCEDURE one_student_attendence(IN In_stu_id CHAR(8), IN In_co_id CHAR(8))
 BEGIN   
     DECLARE course_status CHAR(2);
     SELECT Status INTO course_status FROM course WHERE Co_id = In_co_id LIMIT 1;
@@ -9,6 +9,8 @@ BEGIN
     ELSEIF course_status = 'p' THEN CALL case3(In_stu_id, In_co_id);
     END IF;
 END //
+
+CALL one_student_eligibility('TG1306', 'ICT1233');
 
 ---------------sub1---------------
 DELIMITER //
@@ -40,10 +42,10 @@ END //
 -------------------end-------------------
 
 
-----------all student----------------
+----------all student----------------all_student_eligibility
 delimiter //
 
-CREATE PROCEDURE all_student_eligibility()
+CREATE PROCEDURE all_student_attendence()
 BEGIN
     DROP VIEW all_student_eligible;
     CREATE VIEW all_student_eligible AS
@@ -58,8 +60,58 @@ BEGIN
         JOIN
             course c ON a.Att_co_id = c.Co_id
         GROUP BY 
-            a.Co_type, a.Att_co_id, Att_stu_id
+            a.Co_type, a.Att_co_id, Att_stu_id						
         ORDER BY
         a.Att_stu_id, a.Att_co_id;
     SELECT * FROM All_student_eligible;
 END //
+
+CALL all_student_eligibility();
+
+
+----------all student and all course----------------
+delimiter //
+
+CREATE PROCEDURE all_student_course_atte()
+BEGIN
+    DROP VIEW all_student_course;
+    CREATE VIEW all_student_course AS
+        SELECT 
+            a.Att_stu_id AS Student_ID, 
+            a.Att_co_id AS Course_ID,
+            c.Co_name AS Course_name,
+            SUM(a.Pre_lec) * 100 / ((c.The_week + Pra_week) * MAX(a.Week)) AS Attendance
+        FROM attendence a
+        JOIN course c ON c.Co_id = a.Att_co_id
+        GROUP BY a.Att_stu_id, a.Att_co_id
+        ORDER BY a.Att_stu_id;
+    SELECT * FROM all_student_course;
+END //
+
+CALL all_student_course_atte();
+
+
+----------update medical----------------
+delimiter //
+
+CREATE PROCEDURE medical_update(IN in_medi_id CHAR(8), IN in_student_id CHAR(8), IN in_course_id CHAR(8), IN in_course_type CHAR(2), IN in_date DATE)
+BEGIN 
+    UPDATE attendence
+    SET Pre_lec = Pre_lec + 1 ,Att_medi_id = in_medi_id
+    WHERE Att_stu_id = in_student_id AND  Att_co_id = in_course_id AND Co_type = in_course_type AND  Pre_date = in_date;
+END //
+
+CALL medical_update('ME001', 'TG1306', 'ENG1212', 't', '2024-08-23');
+
+
+-----------show medical------------
+
+delimiter //
+
+CREATE PROCEDURE show_medical()
+BEGIN
+    SELECT * FROM attendence 
+    WHERE Att_medi_id IS NOT NULL;
+END //
+
+CALL show_medical();
