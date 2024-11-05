@@ -33,5 +33,12 @@ begin
 end//
 
 
+ create procedure student_sgpa (IN stid char(8))
+    begin
+    select student_id,sgpa from sgpa where student_id = stid;
+    end //
+
+
+
 
 
